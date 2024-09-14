@@ -11,8 +11,9 @@ function directory_iterator:__gc() end
 ---@return any
 function directory_iterator:__olua_move() end
 
+---@param self fs.directory_iterator
 ---@return any
-function directory_iterator:__pairs() end
+function directory_iterator.__pairs(self) end
 
 ---@return fs.directory_iterator
 ---@overload fun(p: fs.path): fs.directory_iterator

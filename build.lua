@@ -26,6 +26,7 @@ api_dir "addons/fs"
 
 headers [[
 #include "olua.hpp"
+#include "fs_lua.h"
 
 #include <filesystem>
 ]]
@@ -39,6 +40,7 @@ luacls(function (cxxcls)
 end)
 
 exclude_type "std::filesystem::path::iterator"
+exclude_type "std::filesystem::path::__string_view"
 exclude_type "std::u16string"
 exclude_type "std::u32string"
 exclude_type "std::wstring"
@@ -66,10 +68,10 @@ typeconf "std::filesystem::directory_options"
 
 typeconf "std::filesystem::space_info"
 typeconf "std::filesystem::directory_iterator"
-    .iterator "true"
+    .extend "fs::directory_iterator_extend"
     .include "new"
 typeconf "std::filesystem::recursive_directory_iterator"
-    .iterator "true"
+    .extend "fs::recursive_directory_iterator_extend"
     .include "new"
 typeconf "std::filesystem::directory_entry"
 typeconf "std::filesystem::path"

@@ -3,6 +3,7 @@
 //
 #include "lua_fs.h"
 #include "olua.hpp"
+#include "fs_lua.h"
 
 #include <filesystem>
 
@@ -740,23 +741,11 @@ OLUA_LIB int luaopen_fs_error_condition(lua_State *L)
 }
 OLUA_END_DECLS
 
-static int _olua_fun_std_filesystem_path_format___call(lua_State *L)
-{
-    olua_startinvoke(L);
-
-    olua_pushenum(L, olua_checkinteger(L, -1));
-
-    olua_endinvoke(L);
-
-    return 1;
-}
-
 static int _olua_cls_fs_path_format(lua_State *L)
 {
     oluacls_class<std::filesystem::path::format>(L, "fs.path.format");
     oluacls_func(L, "__index", olua_indexerror);
     oluacls_func(L, "__newindex", olua_newindexerror);
-    oluacls_func(L, "__call", _olua_fun_std_filesystem_path_format___call);
     oluacls_enum(L, "auto_format", (lua_Integer)std::filesystem::path::format::auto_format);
     oluacls_enum(L, "generic_format", (lua_Integer)std::filesystem::path::format::generic_format);
     oluacls_enum(L, "native_format", (lua_Integer)std::filesystem::path::format::native_format);
@@ -775,24 +764,11 @@ OLUA_LIB int luaopen_fs_path_format(lua_State *L)
 }
 OLUA_END_DECLS
 
-static int _olua_fun_std_filesystem_copy_options___call(lua_State *L)
-{
-    olua_startinvoke(L);
-
-    olua_pushenum(L, olua_checkinteger(L, -1));
-
-    olua_endinvoke(L);
-
-    return 1;
-}
-
 static int _olua_cls_fs_copy_options(lua_State *L)
 {
     oluacls_class<std::filesystem::copy_options>(L, "fs.copy_options");
     oluacls_func(L, "__index", olua_indexerror);
     oluacls_func(L, "__newindex", olua_newindexerror);
-    oluacls_func(L, "__call", _olua_fun_std_filesystem_copy_options___call);
-    oluacls_enum(L, "__in_recursive_copy", (lua_Integer)std::filesystem::copy_options::__in_recursive_copy);
     oluacls_enum(L, "copy_symlinks", (lua_Integer)std::filesystem::copy_options::copy_symlinks);
     oluacls_enum(L, "create_hard_links", (lua_Integer)std::filesystem::copy_options::create_hard_links);
     oluacls_enum(L, "create_symlinks", (lua_Integer)std::filesystem::copy_options::create_symlinks);
@@ -1099,23 +1075,11 @@ OLUA_LIB int luaopen_fs_file_status(lua_State *L)
 }
 OLUA_END_DECLS
 
-static int _olua_fun_std_filesystem_file_type___call(lua_State *L)
-{
-    olua_startinvoke(L);
-
-    olua_pushenum(L, olua_checkinteger(L, -1));
-
-    olua_endinvoke(L);
-
-    return 1;
-}
-
 static int _olua_cls_fs_file_type(lua_State *L)
 {
     oluacls_class<std::filesystem::file_type>(L, "fs.file_type");
     oluacls_func(L, "__index", olua_indexerror);
     oluacls_func(L, "__newindex", olua_newindexerror);
-    oluacls_func(L, "__call", _olua_fun_std_filesystem_file_type___call);
     oluacls_enum(L, "block", (lua_Integer)std::filesystem::file_type::block);
     oluacls_enum(L, "character", (lua_Integer)std::filesystem::file_type::character);
     oluacls_enum(L, "directory", (lua_Integer)std::filesystem::file_type::directory);
@@ -1141,23 +1105,11 @@ OLUA_LIB int luaopen_fs_file_type(lua_State *L)
 }
 OLUA_END_DECLS
 
-static int _olua_fun_std_filesystem_perm_options___call(lua_State *L)
-{
-    olua_startinvoke(L);
-
-    olua_pushenum(L, olua_checkinteger(L, -1));
-
-    olua_endinvoke(L);
-
-    return 1;
-}
-
 static int _olua_cls_fs_perm_options(lua_State *L)
 {
     oluacls_class<std::filesystem::perm_options>(L, "fs.perm_options");
     oluacls_func(L, "__index", olua_indexerror);
     oluacls_func(L, "__newindex", olua_newindexerror);
-    oluacls_func(L, "__call", _olua_fun_std_filesystem_perm_options___call);
     oluacls_enum(L, "add", (lua_Integer)std::filesystem::perm_options::add);
     oluacls_enum(L, "nofollow", (lua_Integer)std::filesystem::perm_options::nofollow);
     oluacls_enum(L, "remove", (lua_Integer)std::filesystem::perm_options::remove);
@@ -1177,23 +1129,11 @@ OLUA_LIB int luaopen_fs_perm_options(lua_State *L)
 }
 OLUA_END_DECLS
 
-static int _olua_fun_std_filesystem_perms___call(lua_State *L)
-{
-    olua_startinvoke(L);
-
-    olua_pushenum(L, olua_checkinteger(L, -1));
-
-    olua_endinvoke(L);
-
-    return 1;
-}
-
 static int _olua_cls_fs_perms(lua_State *L)
 {
     oluacls_class<std::filesystem::perms>(L, "fs.perms");
     oluacls_func(L, "__index", olua_indexerror);
     oluacls_func(L, "__newindex", olua_newindexerror);
-    oluacls_func(L, "__call", _olua_fun_std_filesystem_perms___call);
     oluacls_enum(L, "all", (lua_Integer)std::filesystem::perms::all);
     oluacls_enum(L, "group_all", (lua_Integer)std::filesystem::perms::group_all);
     oluacls_enum(L, "group_exec", (lua_Integer)std::filesystem::perms::group_exec);
@@ -1228,23 +1168,11 @@ OLUA_LIB int luaopen_fs_perms(lua_State *L)
 }
 OLUA_END_DECLS
 
-static int _olua_fun_std_filesystem_directory_options___call(lua_State *L)
-{
-    olua_startinvoke(L);
-
-    olua_pushenum(L, olua_checkinteger(L, -1));
-
-    olua_endinvoke(L);
-
-    return 1;
-}
-
 static int _olua_cls_fs_directory_options(lua_State *L)
 {
     oluacls_class<std::filesystem::directory_options>(L, "fs.directory_options");
     oluacls_func(L, "__index", olua_indexerror);
     oluacls_func(L, "__newindex", olua_newindexerror);
-    oluacls_func(L, "__call", _olua_fun_std_filesystem_directory_options___call);
     oluacls_enum(L, "follow_directory_symlink", (lua_Integer)std::filesystem::directory_options::follow_directory_symlink);
     oluacls_enum(L, "none", (lua_Integer)std::filesystem::directory_options::none);
     oluacls_enum(L, "skip_permission_denied", (lua_Integer)std::filesystem::directory_options::skip_permission_denied);
@@ -1540,24 +1468,24 @@ static int _olua_fun_std_filesystem_directory_iterator___olua_move(lua_State *L)
 
 static int _olua_fun_std_filesystem_directory_iterator___pairs(lua_State *L)
 {
-    olua_startinvoke(L);
+    try {
+        olua_startinvoke(L);
 
-    int i = 0;
-    auto self = olua_toobj<std::filesystem::directory_iterator>(L, 1);
-    lua_createtable(L, 16, 0);
-    for (auto& v : *self) {
-        olua_copy_object(L, const_cast<decltype(v)>(v), nullptr);
-        olua_rawseti(L, -2, ++i);
+        std::filesystem::directory_iterator *arg1 = nullptr;       /** self */
+
+        olua_check_object(L, 1, &arg1, "fs.directory_iterator");
+
+        // @extend(fs::directory_iterator_extend) static olua_Return __pairs(lua_State *L, std::filesystem::directory_iterator *self)
+        olua_Return ret = fs::directory_iterator_extend::__pairs(L, arg1);
+
+        olua_endinvoke(L);
+
+        return (int)ret;
+    } catch (std::exception &e) {
+        lua_pushfstring(L, "std::filesystem::directory_iterator::__pairs(): %s", e.what());
+        luaL_error(L, olua_tostring(L, -1));
+        return 0;
     }
-    // iterator only use once
-    olua_delobj(L, self);
-    lua_getglobal(L, "pairs");
-    lua_pushvalue(L, -2);
-    lua_call(L, 1, 3);
-
-    olua_endinvoke(L);
-
-    return 3;
 }
 
 static int _olua_fun_std_filesystem_directory_iterator_new$1(lua_State *L)
@@ -2020,24 +1948,24 @@ static int _olua_fun_std_filesystem_recursive_directory_iterator___olua_move(lua
 
 static int _olua_fun_std_filesystem_recursive_directory_iterator___pairs(lua_State *L)
 {
-    olua_startinvoke(L);
+    try {
+        olua_startinvoke(L);
 
-    int i = 0;
-    auto self = olua_toobj<std::filesystem::recursive_directory_iterator>(L, 1);
-    lua_createtable(L, 16, 0);
-    for (auto& v : *self) {
-        olua_copy_object(L, const_cast<decltype(v)>(v), nullptr);
-        olua_rawseti(L, -2, ++i);
+        std::filesystem::recursive_directory_iterator *arg1 = nullptr;       /** self */
+
+        olua_check_object(L, 1, &arg1, "fs.recursive_directory_iterator");
+
+        // @extend(fs::recursive_directory_iterator_extend) static olua_Return __pairs(lua_State *L, std::filesystem::recursive_directory_iterator *self)
+        olua_Return ret = fs::recursive_directory_iterator_extend::__pairs(L, arg1);
+
+        olua_endinvoke(L);
+
+        return (int)ret;
+    } catch (std::exception &e) {
+        lua_pushfstring(L, "std::filesystem::recursive_directory_iterator::__pairs(): %s", e.what());
+        luaL_error(L, olua_tostring(L, -1));
+        return 0;
     }
-    // iterator only use once
-    olua_delobj(L, self);
-    lua_getglobal(L, "pairs");
-    lua_pushvalue(L, -2);
-    lua_call(L, 1, 3);
-
-    olua_endinvoke(L);
-
-    return 3;
 }
 
 static int _olua_fun_std_filesystem_recursive_directory_iterator_new$1(lua_State *L)
@@ -4347,31 +4275,6 @@ static int _olua_fun_std_filesystem_path_compare$3(lua_State *L)
         olua_startinvoke(L);
 
         std::filesystem::path *self = nullptr;
-        std::filesystem::path::__string_view arg1;       /** s */
-
-        olua_to_object(L, 1, &self, "fs.path");
-        olua_check_string(L, 2, &arg1);
-
-        // int compare(std::filesystem::path::__string_view s)
-        int ret = self->compare(arg1);
-        int num_ret = olua_push_integer(L, ret);
-
-        olua_endinvoke(L);
-
-        return num_ret;
-    } catch (std::exception &e) {
-        lua_pushfstring(L, "std::filesystem::path::compare(): %s", e.what());
-        luaL_error(L, olua_tostring(L, -1));
-        return 0;
-    }
-}
-
-static int _olua_fun_std_filesystem_path_compare$4(lua_State *L)
-{
-    try {
-        olua_startinvoke(L);
-
-        std::filesystem::path *self = nullptr;
         const std::filesystem::path::value_type *arg1 = nullptr;       /** s */
 
         olua_to_object(L, 1, &self, "fs.path");
@@ -4391,7 +4294,7 @@ static int _olua_fun_std_filesystem_path_compare$4(lua_State *L)
     }
 }
 
-static int _olua_fun_std_filesystem_path_compare$5(lua_State *L)
+static int _olua_fun_std_filesystem_path_compare$4(lua_State *L)
 {
     try {
         olua_startinvoke(L);
@@ -4416,7 +4319,7 @@ static int _olua_fun_std_filesystem_path_compare$5(lua_State *L)
     }
 }
 
-static int _olua_fun_std_filesystem_path_compare$6(lua_State *L)
+static int _olua_fun_std_filesystem_path_compare$5(lua_State *L)
 {
     try {
         olua_startinvoke(L);
@@ -4452,17 +4355,12 @@ static int _olua_fun_std_filesystem_path_compare(lua_State *L)
         }
 
         if ((olua_is_string(L, 2))) {
-            // int compare(const std::filesystem::path::value_type *s)
+            // int compare(const std::string &p)
             return _olua_fun_std_filesystem_path_compare$4(L);
         }
 
         if ((olua_is_string(L, 2))) {
-            // int compare(const std::string &p)
-            return _olua_fun_std_filesystem_path_compare$5(L);
-        }
-
-        if ((olua_is_string(L, 2))) {
-            // int compare(std::filesystem::path::__string_view s)
+            // int compare(const std::filesystem::path::value_type *s)
             return _olua_fun_std_filesystem_path_compare$3(L);
         }
 
@@ -4473,7 +4371,7 @@ static int _olua_fun_std_filesystem_path_compare(lua_State *L)
 
         // if ((olua_is_object(L, 2, "fs.path"))) {
             // int compare(const std::filesystem::path &p)
-            return _olua_fun_std_filesystem_path_compare$6(L);
+            return _olua_fun_std_filesystem_path_compare$5(L);
         // }
     }
 

@@ -1,4 +1,4 @@
-package.cpath = "build/?.so;" .. package.cpath
+package.cpath = "build/?.so;build/Debug/?.dll;" .. package.cpath
 
 local fs = require "fs"
 local copy_options = require "fs.copy_options"
@@ -23,7 +23,7 @@ local t = directory_iterator.new("olua")
 print(getmetatable(t).__pairs)
 
 print("### do now")
-for _, file in pairs(recursive_directory_iterator.new("olua")) do
+for _, file in pairs(recursive_directory_iterator.new("./")) do
     ---@cast file fs.directory_entry
     print("@" .. _, file,  file:path():string())
 end

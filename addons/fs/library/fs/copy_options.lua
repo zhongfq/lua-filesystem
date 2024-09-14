@@ -7,7 +7,6 @@ local VALUE
 ---
 ---@enum fs.copy_options
 local copy_options = {
-    __in_recursive_copy = 512,
     copy_symlinks = 16,
     create_hard_links = 256,
     create_symlinks = 128,

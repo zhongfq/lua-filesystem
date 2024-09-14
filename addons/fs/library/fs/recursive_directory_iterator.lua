@@ -11,8 +11,9 @@ function recursive_directory_iterator:__gc() end
 ---@return any
 function recursive_directory_iterator:__olua_move() end
 
+---@param self fs.recursive_directory_iterator
 ---@return any
-function recursive_directory_iterator:__pairs() end
+function recursive_directory_iterator.__pairs(self) end
 
 ---@return fs.recursive_directory_iterator
 ---@overload fun(p: fs.path, xoptions: fs.directory_options): fs.recursive_directory_iterator

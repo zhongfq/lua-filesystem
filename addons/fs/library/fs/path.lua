@@ -25,7 +25,6 @@ function path:clear() end
 ---@return integer
 ---@overload fun(self: fs.path, s: string): integer
 ---@overload fun(self: fs.path, s: string): integer
----@overload fun(self: fs.path, s: string): integer
 ---@overload fun(self: fs.path, p: string): integer
 ---@overload fun(self: fs.path, p: fs.path): integer
 function path:compare(p) end

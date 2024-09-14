@@ -6,6 +6,8 @@ set(CMAKE_OSX_ARCHITECTURES "x86_64;arm64")
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_VISIBILITY_PRESET hidden)
 
+add_subdirectory(lua)
+
 add_library(luafs MODULE 
   src/lua_fs.cpp
   src/lua_fs.h
