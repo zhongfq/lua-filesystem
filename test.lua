@@ -19,11 +19,11 @@ fs.remove("test.lua.bak")
 fs.copy("test.lua", "test.lua.bak", copy_options.overwrite_existing)
 -- filesystem.copy("autobuild", "autobuild.bak")
 
-local t = directory_iterator.new("olua")
+local t = recursive_directory_iterator.new("olua/script")
 print(getmetatable(t).__pairs)
 
 print("### do now")
-for _, file in pairs(recursive_directory_iterator.new("./")) do
+for _, file in pairs(t) do
     ---@cast file fs.directory_entry
-    print("@" .. _, file,  file:path():string())
+    print("@1", file,  file:path():string())
 end

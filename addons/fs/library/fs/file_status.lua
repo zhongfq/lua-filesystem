@@ -8,9 +8,6 @@ local file_status = {}
 ---@return any
 function file_status:__gc() end
 
----@return any
-function file_status:__olua_move() end
-
 ---@return fs.file_status
 ---@overload fun(ft: fs.file_type, prms: fs.perms): fs.file_status
 ---@overload fun(ft: fs.file_type): fs.file_status

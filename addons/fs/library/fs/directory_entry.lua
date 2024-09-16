@@ -8,15 +8,8 @@ local directory_entry = {}
 ---@return any
 function directory_entry:__gc() end
 
----@return any
-function directory_entry:__olua_move() end
-
----@param p fs.path
----@overload fun(self: fs.directory_entry, p: fs.path, ec: fs.error_code)
----@overload fun(self: fs.directory_entry, p: string)
----@overload fun(self: fs.directory_entry, p: fs.path)
----@overload fun(self: fs.directory_entry, p: string, ec: fs.error_code)
----@overload fun(self: fs.directory_entry, p: fs.path, ec: fs.error_code)
+---@param p fs.path|string
+---@overload fun(self: fs.directory_entry, p: fs.path|string, ec: fs.error_code)
 function directory_entry:assign(p) end
 
 ---@return boolean
@@ -68,12 +61,8 @@ function directory_entry:is_symlink() end
 function directory_entry:last_write_time() end
 
 ---@return fs.directory_entry
----@overload fun(p: fs.path): fs.directory_entry
----@overload fun(p: fs.path, ec: fs.error_code): fs.directory_entry
----@overload fun(p: string): fs.directory_entry
----@overload fun(p: fs.path): fs.directory_entry
----@overload fun(p: string, ec: fs.error_code): fs.directory_entry
----@overload fun(p: fs.path, ec: fs.error_code): fs.directory_entry
+---@overload fun(p: fs.path|string): fs.directory_entry
+---@overload fun(p: fs.path|string, ec: fs.error_code): fs.directory_entry
 function directory_entry.new() end
 
 ---@return fs.path
@@ -82,12 +71,8 @@ function directory_entry:path() end
 ---@overload fun(self: fs.directory_entry, ec: fs.error_code)
 function directory_entry:refresh() end
 
----@param p fs.path
----@overload fun(self: fs.directory_entry, p: fs.path, ec: fs.error_code)
----@overload fun(self: fs.directory_entry, p: string)
----@overload fun(self: fs.directory_entry, p: fs.path)
----@overload fun(self: fs.directory_entry, p: string, ec: fs.error_code)
----@overload fun(self: fs.directory_entry, p: fs.path, ec: fs.error_code)
+---@param p fs.path|string
+---@overload fun(self: fs.directory_entry, p: fs.path|string, ec: fs.error_code)
 function directory_entry:replace_filename(p) end
 
 ---@return fs.file_status

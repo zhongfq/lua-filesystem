@@ -84,19 +84,41 @@ int olua_push_string(lua_State *L, const wchar_t *value)
 
 namespace fs {
 
+constexpr const char *INVALID_ITERACTOR = ".olua.fs.invalid_iterator";
+
+template <class T> inline
+int pairs_next(lua_State *L) {
+    lua_settop(L, 2);
+    auto self = olua_toobj<T>(L, 1);
+    auto itor = olua_isnil(L, 2) ? self : olua_toobj<T>(L, 2);
+    if (*itor != std::filesystem::end(*itor)) {
+        auto v = **itor;
+        ++(*itor);
+        if (olua_isnil(L, 2)) {
+            olua_copy_object(L, *itor, nullptr);
+        } else {
+            olua_setrawobj(L, 2, itor);
+        }
+        olua_copy_object(L, v, nullptr);
+        return 2;
+    } else {
+        lua_pushnil(L);
+        return 1;
+    }
+}
+
 template <class T> inline
 olua_Return pairs(lua_State *L, T *self) {
-    int i = 0;
-    lua_createtable(L, 16, 0);
-    for (auto &v : *self) {
-        olua_copy_object(L, const_cast<decltype(v)>(v), nullptr);
-        olua_rawseti(L, -2, ++i);
+    lua_pushstring(L, INVALID_ITERACTOR);
+    if (olua_getvariable(L, 1) != LUA_TNIL) {
+        luaL_error(L, "'%s' has already been used", olua_objstring(L, 1));
     }
-    // iterator only use once
-    olua_delobj(L, self);
-    lua_getglobal(L, "pairs");
-    lua_pushvalue(L, -2);
-    lua_call(L, 1, 3);
+    lua_pushstring(L, INVALID_ITERACTOR);
+    lua_pushboolean(L, true);
+    olua_setvariable(L, 1);
+    lua_pushcfunction(L, pairs_next<T>);
+    lua_pushvalue(L, 1);
+    lua_pushnil(L);
     return 3;
 }
 
@@ -110,7 +132,7 @@ public:
 class recursive_directory_iterator_extend {
 public:
     static olua_Return __pairs(lua_State *L, std::filesystem::recursive_directory_iterator *self) {
-        return pairs(L, self);
+       return pairs(L, self);
     }
 };
 }

@@ -8,9 +8,6 @@ local error_condition = {}
 ---@return any
 function error_condition:__gc() end
 
----@return any
-function error_condition:__olua_move() end
-
 ---@param val integer
 ---@param cat fs.error_category
 function error_condition:assign(val, cat) end

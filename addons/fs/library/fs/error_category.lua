@@ -8,9 +8,6 @@ local error_category = {}
 ---@return any
 function error_category:__gc() end
 
----@return any
-function error_category:__olua_move() end
-
 ---@param ev integer
 ---@return fs.error_condition
 function error_category:default_error_condition(ev) end

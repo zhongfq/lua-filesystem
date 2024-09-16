@@ -9,9 +9,6 @@ local path = {}
 ---@return any
 function path:__gc() end
 
----@return any
-function path:__olua_move() end
-
 ---@param s string
 ---@return fs.path
 function path:assign(s) end
@@ -21,12 +18,10 @@ function path:c_str() end
 
 function path:clear() end
 
----@param p fs.path
+---@param p fs.path|string
 ---@return integer
 ---@overload fun(self: fs.path, s: string): integer
 ---@overload fun(self: fs.path, s: string): integer
----@overload fun(self: fs.path, p: string): integer
----@overload fun(self: fs.path, p: fs.path): integer
 function path:compare(p) end
 
 ---@return boolean
@@ -77,16 +72,12 @@ function path:is_relative() end
 ---@return fs.path
 function path:lexically_normal() end
 
----@param base fs.path
+---@param base fs.path|string
 ---@return fs.path
----@overload fun(self: fs.path, base: string): fs.path
----@overload fun(self: fs.path, base: fs.path): fs.path
 function path:lexically_proximate(base) end
 
----@param base fs.path
+---@param base fs.path|string
 ---@return fs.path
----@overload fun(self: fs.path, base: string): fs.path
----@overload fun(self: fs.path, base: fs.path): fs.path
 function path:lexically_relative(base) end
 
 ---@return fs.path
@@ -109,17 +100,13 @@ function path:relative_path() end
 ---@return fs.path
 function path:remove_filename() end
 
----@param replacement fs.path
+---@param replacement fs.path|string
 ---@return fs.path
 ---@overload fun(self: fs.path): fs.path
----@overload fun(self: fs.path, replacement: string): fs.path
----@overload fun(self: fs.path, replacement: fs.path): fs.path
 function path:replace_extension(replacement) end
 
----@param replacement fs.path
+---@param replacement fs.path|string
 ---@return fs.path
----@overload fun(self: fs.path, replacement: string): fs.path
----@overload fun(self: fs.path, replacement: fs.path): fs.path
 function path:replace_filename(replacement) end
 
 ---@return fs.path
