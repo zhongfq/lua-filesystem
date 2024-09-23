@@ -5,8 +5,16 @@
 ---@class fs.error_category 
 local error_category = {}
 
+---@param rhs fs.error_category
+---@return boolean
+function error_category:__eq(rhs) end
+
 ---@return any
 function error_category:__gc() end
+
+---@param rhs fs.error_category
+---@return boolean
+function error_category:__lt(rhs) end
 
 ---@param ev integer
 ---@return fs.error_condition

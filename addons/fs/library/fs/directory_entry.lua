@@ -5,8 +5,20 @@
 ---@class fs.directory_entry 
 local directory_entry = {}
 
+---@param rhs fs.directory_entry
+---@return boolean
+function directory_entry:__eq(rhs) end
+
 ---@return any
 function directory_entry:__gc() end
+
+---@param rhs fs.directory_entry
+---@return boolean
+function directory_entry:__le(rhs) end
+
+---@param rhs fs.directory_entry
+---@return boolean
+function directory_entry:__lt(rhs) end
 
 ---@param p fs.path|string
 ---@overload fun(self: fs.directory_entry, p: fs.path|string, ec: fs.error_code)

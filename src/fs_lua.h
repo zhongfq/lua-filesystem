@@ -9,7 +9,7 @@
 #include <stdexcept>
 #include <Windows.h>
 
-std::wstring string_to_wide_string(const std::string& string)
+std::wstring string_to_wstring(const std::string& string)
 {
     if (string.empty())
     {
@@ -27,7 +27,7 @@ std::wstring string_to_wide_string(const std::string& string)
     return result;
 }
 
-std::string wide_string_to_string(const std::wstring& wide_string)
+std::string wstring_to_string(const std::wstring& wide_string)
 {
     if (wide_string.empty())
     {
@@ -51,14 +51,14 @@ void olua_check_string<std::wstring>(lua_State *L, int idx, std::wstring *value)
 {
     size_t len;
     const char *str = olua_checklstring(L, idx, &len);
-    std::wstring wstr = string_to_wide_string(std::string(str, len));
+    std::wstring wstr = string_to_wstring(std::string(str, len));
     *value = wstr;
 }
 
 template <> inline
 int olua_push_string<std::wstring>(lua_State *L, const std::wstring &value)
 {
-    auto str = wide_string_to_string(value);
+    auto str = wstring_to_string(value);
     lua_pushlstring(L, str.data(), str.size());
     return 1;
 }
@@ -135,6 +135,22 @@ public:
        return pairs(L, self);
     }
 };
+
+class path_extend {
+public:
+    static std::filesystem::path posix_path(std::filesystem::path *self) {
+#ifdef _WIN32
+        auto preferred = self->make_preferred().string();
+        std::replace(preferred.begin(), preferred.end(), L'\\', L'/');
+        return std::filesystem::path(preferred);
+#else
+        auto preferred = self->make_preferred().string();
+        std::replace(preferred.begin(), preferred.end(), '\\', '/');
+        return std::filesystem::path(preferred);
+#endif
+    }
+};
+
 }
 
 #endif

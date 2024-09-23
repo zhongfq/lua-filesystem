@@ -25,5 +25,8 @@ print(getmetatable(t).__pairs)
 print("### do now")
 for _, file in pairs(t) do
     ---@cast file fs.directory_entry
-    print("@1", file,  file:path():string())
+    print("@1", file,  file:path():string(), file:path():posix_path():string())
 end
+
+local newpath = path.new("a/b/c") / "hello.png"
+print("hello path:", newpath, newpath:string())

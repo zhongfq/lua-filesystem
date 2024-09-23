@@ -3,9 +3,9 @@
 
 ---
 ---@class fs.space_info 
----@field available integer
 ---@field capacity integer
 ---@field free integer
+---@field available integer
 local space_info = {}
 
 ---@return any

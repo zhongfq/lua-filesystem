@@ -4,10 +4,31 @@
 ---
 ---@class fs.path 
 ---@field preferred_separator integer
+---@operator div(fs.path|string):fs.path
 local path = {}
+
+---@param lhs fs.path|string
+---@param rhs fs.path|string
+---@return fs.path
+function path.__div(lhs, rhs) end
+
+---@param lhs fs.path|string
+---@param rhs fs.path|string
+---@return boolean
+function path.__eq(lhs, rhs) end
 
 ---@return any
 function path:__gc() end
+
+---@param lhs fs.path|string
+---@param rhs fs.path|string
+---@return boolean
+function path.__le(lhs, rhs) end
+
+---@param lhs fs.path|string
+---@param rhs fs.path|string
+---@return boolean
+function path.__lt(lhs, rhs) end
 
 ---@param s string
 ---@return fs.path
@@ -93,6 +114,10 @@ function path.new() end
 
 ---@return fs.path
 function path:parent_path() end
+
+---@param self fs.path
+---@return fs.path
+function path.posix_path(self) end
 
 ---@return fs.path
 function path:relative_path() end

@@ -40,6 +40,77 @@ OLUA_LIB int luaopen_fs_file_time_type(lua_State *L)
 }
 OLUA_END_DECLS
 
+static int _olua_fun_std_error_code___eq$1(lua_State *L)
+{
+    try {
+        olua_startinvoke(L);
+
+        std::error_code *arg1;       /** x */
+        std::error_code *arg2;       /** y */
+
+        olua_check_object(L, 1, &arg1, "fs.error_code");
+        olua_check_object(L, 2, &arg2, "fs.error_code");
+
+        // @operator(operator==) static bool operator==(const std::error_code &x, const std::error_code &y)
+        bool ret = (*arg1) == (*arg2);
+        int num_ret = olua_push_bool(L, ret);
+
+        olua_endinvoke(L);
+
+        return num_ret;
+    } catch (std::exception &e) {
+        lua_pushfstring(L, "std::error_code::__eq(): %s", e.what());
+        luaL_error(L, olua_tostring(L, -1));
+        return 0;
+    }
+}
+
+static int _olua_fun_std_error_code___eq$2(lua_State *L)
+{
+    try {
+        olua_startinvoke(L);
+
+        std::error_code *arg1;       /** x */
+        std::error_condition *arg2;       /** y */
+
+        olua_check_object(L, 1, &arg1, "fs.error_code");
+        olua_check_object(L, 2, &arg2, "fs.error_condition");
+
+        // @operator(operator==) static bool operator==(const std::error_code &x, const std::error_condition &y)
+        bool ret = (*arg1) == (*arg2);
+        int num_ret = olua_push_bool(L, ret);
+
+        olua_endinvoke(L);
+
+        return num_ret;
+    } catch (std::exception &e) {
+        lua_pushfstring(L, "std::error_code::__eq(): %s", e.what());
+        luaL_error(L, olua_tostring(L, -1));
+        return 0;
+    }
+}
+
+static int _olua_fun_std_error_code___eq(lua_State *L)
+{
+    int num_args = lua_gettop(L);
+
+    if (num_args == 2) {
+        if ((olua_is_object(L, 1, "fs.error_code")) && (olua_is_object(L, 2, "fs.error_code"))) {
+            // @operator(operator==) static bool operator==(const std::error_code &x, const std::error_code &y)
+            return _olua_fun_std_error_code___eq$1(L);
+        }
+
+        // if ((olua_is_object(L, 1, "fs.error_code")) && (olua_is_object(L, 2, "fs.error_condition"))) {
+            // @operator(operator==) static bool operator==(const std::error_code &x, const std::error_condition &y)
+            return _olua_fun_std_error_code___eq$2(L);
+        // }
+    }
+
+    luaL_error(L, "method 'std::error_code::__eq' not support '%d' arguments", num_args);
+
+    return 0;
+}
+
 static int _olua_fun_std_error_code___gc(lua_State *L)
 {
     olua_startinvoke(L);
@@ -50,6 +121,31 @@ static int _olua_fun_std_error_code___gc(lua_State *L)
     olua_endinvoke(L);
 
     return 0;
+}
+
+static int _olua_fun_std_error_code___lt(lua_State *L)
+{
+    try {
+        olua_startinvoke(L);
+
+        std::error_code *arg1;       /** x */
+        std::error_code *arg2;       /** y */
+
+        olua_check_object(L, 1, &arg1, "fs.error_code");
+        olua_check_object(L, 2, &arg2, "fs.error_code");
+
+        // @operator(operator<) static bool operator<(const std::error_code &x, const std::error_code &y)
+        bool ret = (*arg1) < (*arg2);
+        int num_ret = olua_push_bool(L, ret);
+
+        olua_endinvoke(L);
+
+        return num_ret;
+    } catch (std::exception &e) {
+        lua_pushfstring(L, "std::error_code::__lt(): %s", e.what());
+        luaL_error(L, olua_tostring(L, -1));
+        return 0;
+    }
 }
 
 static int _olua_fun_std_error_code_assign(lua_State *L)
@@ -262,7 +358,9 @@ static int _olua_fun_std_error_code_value(lua_State *L)
 static int _olua_cls_fs_error_code(lua_State *L)
 {
     oluacls_class<std::error_code>(L, "fs.error_code");
+    oluacls_func(L, "__eq", _olua_fun_std_error_code___eq);
     oluacls_func(L, "__gc", _olua_fun_std_error_code___gc);
+    oluacls_func(L, "__lt", _olua_fun_std_error_code___lt);
     oluacls_func(L, "assign", _olua_fun_std_error_code_assign);
     oluacls_func(L, "category", _olua_fun_std_error_code_category);
     oluacls_func(L, "clear", _olua_fun_std_error_code_clear);
@@ -285,6 +383,31 @@ OLUA_LIB int luaopen_fs_error_code(lua_State *L)
 }
 OLUA_END_DECLS
 
+static int _olua_fun_std_error_category___eq(lua_State *L)
+{
+    try {
+        olua_startinvoke(L);
+
+        std::error_category *self = nullptr;
+        std::error_category *arg1;       /** rhs */
+
+        olua_to_object(L, 1, &self, "fs.error_category");
+        olua_check_object(L, 2, &arg1, "fs.error_category");
+
+        // @operator(operator==) bool operator==(const std::error_category &rhs)
+        bool ret = (*self) == (*arg1);
+        int num_ret = olua_push_bool(L, ret);
+
+        olua_endinvoke(L);
+
+        return num_ret;
+    } catch (std::exception &e) {
+        lua_pushfstring(L, "std::error_category::__eq(): %s", e.what());
+        luaL_error(L, olua_tostring(L, -1));
+        return 0;
+    }
+}
+
 static int _olua_fun_std_error_category___gc(lua_State *L)
 {
     olua_startinvoke(L);
@@ -295,6 +418,31 @@ static int _olua_fun_std_error_category___gc(lua_State *L)
     olua_endinvoke(L);
 
     return 0;
+}
+
+static int _olua_fun_std_error_category___lt(lua_State *L)
+{
+    try {
+        olua_startinvoke(L);
+
+        std::error_category *self = nullptr;
+        std::error_category *arg1;       /** rhs */
+
+        olua_to_object(L, 1, &self, "fs.error_category");
+        olua_check_object(L, 2, &arg1, "fs.error_category");
+
+        // @operator(operator<) bool operator<(const std::error_category &rhs)
+        bool ret = (*self) < (*arg1);
+        int num_ret = olua_push_bool(L, ret);
+
+        olua_endinvoke(L);
+
+        return num_ret;
+    } catch (std::exception &e) {
+        lua_pushfstring(L, "std::error_category::__lt(): %s", e.what());
+        luaL_error(L, olua_tostring(L, -1));
+        return 0;
+    }
 }
 
 static int _olua_fun_std_error_category_default_error_condition(lua_State *L)
@@ -378,15 +526,15 @@ static int _olua_fun_std_error_category_equivalent$2(lua_State *L)
 
 static int _olua_fun_std_error_category_equivalent(lua_State *L)
 {
-    int num_args = lua_gettop(L) - 1;
+    int num_args = lua_gettop(L);
 
-    if (num_args == 2) {
-        if ((olua_is_integer(L, 2)) && (olua_is_object(L, 3, "fs.error_condition"))) {
+    if (num_args == 3) {
+        if ((olua_is_object(L, 1, "fs.error_category")) && (olua_is_integer(L, 2)) && (olua_is_object(L, 3, "fs.error_condition"))) {
             // bool equivalent(int code, const std::error_condition &condition)
             return _olua_fun_std_error_category_equivalent$1(L);
         }
 
-        // if ((olua_is_object(L, 2, "fs.error_code")) && (olua_is_integer(L, 3))) {
+        // if ((olua_is_object(L, 1, "fs.error_category")) && (olua_is_object(L, 2, "fs.error_code")) && (olua_is_integer(L, 3))) {
             // bool equivalent(const std::error_code &code, int condition)
             return _olua_fun_std_error_category_equivalent$2(L);
         // }
@@ -448,7 +596,9 @@ static int _olua_fun_std_error_category_name(lua_State *L)
 static int _olua_cls_fs_error_category(lua_State *L)
 {
     oluacls_class<std::error_category>(L, "fs.error_category");
+    oluacls_func(L, "__eq", _olua_fun_std_error_category___eq);
     oluacls_func(L, "__gc", _olua_fun_std_error_category___gc);
+    oluacls_func(L, "__lt", _olua_fun_std_error_category___lt);
     oluacls_func(L, "default_error_condition", _olua_fun_std_error_category_default_error_condition);
     oluacls_func(L, "equivalent", _olua_fun_std_error_category_equivalent);
     oluacls_func(L, "message", _olua_fun_std_error_category_message);
@@ -468,6 +618,77 @@ OLUA_LIB int luaopen_fs_error_category(lua_State *L)
 }
 OLUA_END_DECLS
 
+static int _olua_fun_std_error_condition___eq$1(lua_State *L)
+{
+    try {
+        olua_startinvoke(L);
+
+        std::error_condition *arg1;       /** x */
+        std::error_code *arg2;       /** y */
+
+        olua_check_object(L, 1, &arg1, "fs.error_condition");
+        olua_check_object(L, 2, &arg2, "fs.error_code");
+
+        // @operator(operator==) static bool operator==(const std::error_condition &x, const std::error_code &y)
+        bool ret = (*arg1) == (*arg2);
+        int num_ret = olua_push_bool(L, ret);
+
+        olua_endinvoke(L);
+
+        return num_ret;
+    } catch (std::exception &e) {
+        lua_pushfstring(L, "std::error_condition::__eq(): %s", e.what());
+        luaL_error(L, olua_tostring(L, -1));
+        return 0;
+    }
+}
+
+static int _olua_fun_std_error_condition___eq$2(lua_State *L)
+{
+    try {
+        olua_startinvoke(L);
+
+        std::error_condition *arg1;       /** x */
+        std::error_condition *arg2;       /** y */
+
+        olua_check_object(L, 1, &arg1, "fs.error_condition");
+        olua_check_object(L, 2, &arg2, "fs.error_condition");
+
+        // @operator(operator==) static bool operator==(const std::error_condition &x, const std::error_condition &y)
+        bool ret = (*arg1) == (*arg2);
+        int num_ret = olua_push_bool(L, ret);
+
+        olua_endinvoke(L);
+
+        return num_ret;
+    } catch (std::exception &e) {
+        lua_pushfstring(L, "std::error_condition::__eq(): %s", e.what());
+        luaL_error(L, olua_tostring(L, -1));
+        return 0;
+    }
+}
+
+static int _olua_fun_std_error_condition___eq(lua_State *L)
+{
+    int num_args = lua_gettop(L);
+
+    if (num_args == 2) {
+        if ((olua_is_object(L, 1, "fs.error_condition")) && (olua_is_object(L, 2, "fs.error_code"))) {
+            // @operator(operator==) static bool operator==(const std::error_condition &x, const std::error_code &y)
+            return _olua_fun_std_error_condition___eq$1(L);
+        }
+
+        // if ((olua_is_object(L, 1, "fs.error_condition")) && (olua_is_object(L, 2, "fs.error_condition"))) {
+            // @operator(operator==) static bool operator==(const std::error_condition &x, const std::error_condition &y)
+            return _olua_fun_std_error_condition___eq$2(L);
+        // }
+    }
+
+    luaL_error(L, "method 'std::error_condition::__eq' not support '%d' arguments", num_args);
+
+    return 0;
+}
+
 static int _olua_fun_std_error_condition___gc(lua_State *L)
 {
     olua_startinvoke(L);
@@ -478,6 +699,31 @@ static int _olua_fun_std_error_condition___gc(lua_State *L)
     olua_endinvoke(L);
 
     return 0;
+}
+
+static int _olua_fun_std_error_condition___lt(lua_State *L)
+{
+    try {
+        olua_startinvoke(L);
+
+        std::error_condition *arg1;       /** x */
+        std::error_condition *arg2;       /** y */
+
+        olua_check_object(L, 1, &arg1, "fs.error_condition");
+        olua_check_object(L, 2, &arg2, "fs.error_condition");
+
+        // @operator(operator<) static bool operator<(const std::error_condition &x, const std::error_condition &y)
+        bool ret = (*arg1) < (*arg2);
+        int num_ret = olua_push_bool(L, ret);
+
+        olua_endinvoke(L);
+
+        return num_ret;
+    } catch (std::exception &e) {
+        lua_pushfstring(L, "std::error_condition::__lt(): %s", e.what());
+        luaL_error(L, olua_tostring(L, -1));
+        return 0;
+    }
 }
 
 static int _olua_fun_std_error_condition_assign(lua_State *L)
@@ -667,7 +913,9 @@ static int _olua_fun_std_error_condition_value(lua_State *L)
 static int _olua_cls_fs_error_condition(lua_State *L)
 {
     oluacls_class<std::error_condition>(L, "fs.error_condition");
+    oluacls_func(L, "__eq", _olua_fun_std_error_condition___eq);
     oluacls_func(L, "__gc", _olua_fun_std_error_condition___gc);
+    oluacls_func(L, "__lt", _olua_fun_std_error_condition___lt);
     oluacls_func(L, "assign", _olua_fun_std_error_condition_assign);
     oluacls_func(L, "category", _olua_fun_std_error_condition_category);
     oluacls_func(L, "clear", _olua_fun_std_error_condition_clear);
@@ -901,15 +1149,15 @@ static int _olua_fun_std_filesystem_file_status_permissions$2(lua_State *L)
 
 static int _olua_fun_std_filesystem_file_status_permissions(lua_State *L)
 {
-    int num_args = lua_gettop(L) - 1;
+    int num_args = lua_gettop(L);
 
-    if (num_args == 0) {
+    if (num_args == 1) {
         // std::filesystem::perms permissions()
         return _olua_fun_std_filesystem_file_status_permissions$1(L);
     }
 
-    if (num_args == 1) {
-        // if ((olua_is_enum(L, 2))) {
+    if (num_args == 2) {
+        // if ((olua_is_object(L, 1, "fs.file_status")) && (olua_is_enum(L, 2))) {
             // void permissions(std::filesystem::perms p)
             return _olua_fun_std_filesystem_file_status_permissions$2(L);
         // }
@@ -969,15 +1217,15 @@ static int _olua_fun_std_filesystem_file_status_type$2(lua_State *L)
 
 static int _olua_fun_std_filesystem_file_status_type(lua_State *L)
 {
-    int num_args = lua_gettop(L) - 1;
+    int num_args = lua_gettop(L);
 
-    if (num_args == 0) {
+    if (num_args == 1) {
         // std::filesystem::file_type type()
         return _olua_fun_std_filesystem_file_status_type$1(L);
     }
 
-    if (num_args == 1) {
-        // if ((olua_is_enum(L, 2))) {
+    if (num_args == 2) {
+        // if ((olua_is_object(L, 1, "fs.file_status")) && (olua_is_enum(L, 2))) {
             // void type(std::filesystem::file_type ft)
             return _olua_fun_std_filesystem_file_status_type$2(L);
         // }
@@ -1187,15 +1435,15 @@ static int _olua_fun_std_filesystem_space_info_available$2(lua_State *L)
 
 static int _olua_fun_std_filesystem_space_info_available(lua_State *L)
 {
-    int num_args = lua_gettop(L) - 1;
+    int num_args = lua_gettop(L);
 
-    if (num_args == 0) {
+    if (num_args == 1) {
         // uintmax_t available
         return _olua_fun_std_filesystem_space_info_available$1(L);
     }
 
-    if (num_args == 1) {
-        // if ((olua_is_integer(L, 2))) {
+    if (num_args == 2) {
+        // if ((olua_is_object(L, 1, "fs.space_info")) && (olua_is_integer(L, 2))) {
             // uintmax_t available
             return _olua_fun_std_filesystem_space_info_available$2(L);
         // }
@@ -1255,15 +1503,15 @@ static int _olua_fun_std_filesystem_space_info_capacity$2(lua_State *L)
 
 static int _olua_fun_std_filesystem_space_info_capacity(lua_State *L)
 {
-    int num_args = lua_gettop(L) - 1;
+    int num_args = lua_gettop(L);
 
-    if (num_args == 0) {
+    if (num_args == 1) {
         // uintmax_t capacity
         return _olua_fun_std_filesystem_space_info_capacity$1(L);
     }
 
-    if (num_args == 1) {
-        // if ((olua_is_integer(L, 2))) {
+    if (num_args == 2) {
+        // if ((olua_is_object(L, 1, "fs.space_info")) && (olua_is_integer(L, 2))) {
             // uintmax_t capacity
             return _olua_fun_std_filesystem_space_info_capacity$2(L);
         // }
@@ -1323,15 +1571,15 @@ static int _olua_fun_std_filesystem_space_info_free$2(lua_State *L)
 
 static int _olua_fun_std_filesystem_space_info_free(lua_State *L)
 {
-    int num_args = lua_gettop(L) - 1;
+    int num_args = lua_gettop(L);
 
-    if (num_args == 0) {
+    if (num_args == 1) {
         // uintmax_t free
         return _olua_fun_std_filesystem_space_info_free$1(L);
     }
 
-    if (num_args == 1) {
-        // if ((olua_is_integer(L, 2))) {
+    if (num_args == 2) {
+        // if ((olua_is_object(L, 1, "fs.space_info")) && (olua_is_integer(L, 2))) {
             // uintmax_t free
             return _olua_fun_std_filesystem_space_info_free$2(L);
         // }
@@ -1346,9 +1594,9 @@ static int _olua_cls_fs_space_info(lua_State *L)
 {
     oluacls_class<std::filesystem::space_info>(L, "fs.space_info");
     oluacls_func(L, "__gc", _olua_fun_std_filesystem_space_info___gc);
-    oluacls_prop(L, "available", _olua_fun_std_filesystem_space_info_available, _olua_fun_std_filesystem_space_info_available);
     oluacls_prop(L, "capacity", _olua_fun_std_filesystem_space_info_capacity, _olua_fun_std_filesystem_space_info_capacity);
     oluacls_prop(L, "free", _olua_fun_std_filesystem_space_info_free, _olua_fun_std_filesystem_space_info_free);
+    oluacls_prop(L, "available", _olua_fun_std_filesystem_space_info_available, _olua_fun_std_filesystem_space_info_available);
 
     return 1;
 }
@@ -1426,8 +1674,8 @@ static int _olua_fun_std_filesystem_directory_iterator_new$2(lua_State *L)
         std::filesystem::path *arg1;       /** p */
         std::filesystem::path arg1_fromstring;       /** p */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -1457,8 +1705,8 @@ static int _olua_fun_std_filesystem_directory_iterator_new$3(lua_State *L)
         std::filesystem::path arg1_fromstring;       /** p */
         std::filesystem::directory_options arg2 = (std::filesystem::directory_options)0;       /** opts */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -1489,8 +1737,8 @@ static int _olua_fun_std_filesystem_directory_iterator_new$4(lua_State *L)
         std::filesystem::path arg1_fromstring;       /** p */
         std::error_code *arg2 = nullptr;       /** ec */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -1522,8 +1770,8 @@ static int _olua_fun_std_filesystem_directory_iterator_new$5(lua_State *L)
         std::filesystem::directory_options arg2 = (std::filesystem::directory_options)0;       /** opts */
         std::error_code *arg3 = nullptr;       /** ec */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -1670,8 +1918,8 @@ static int _olua_fun_std_filesystem_recursive_directory_iterator_new$2(lua_State
         std::filesystem::path arg1_fromstring;       /** p */
         std::filesystem::directory_options arg2 = (std::filesystem::directory_options)0;       /** xoptions */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -1701,8 +1949,8 @@ static int _olua_fun_std_filesystem_recursive_directory_iterator_new$3(lua_State
         std::filesystem::path *arg1;       /** p */
         std::filesystem::path arg1_fromstring;       /** p */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -1733,8 +1981,8 @@ static int _olua_fun_std_filesystem_recursive_directory_iterator_new$4(lua_State
         std::filesystem::directory_options arg2 = (std::filesystem::directory_options)0;       /** xoptions */
         std::error_code *arg3 = nullptr;       /** ec */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -1766,8 +2014,8 @@ static int _olua_fun_std_filesystem_recursive_directory_iterator_new$5(lua_State
         std::filesystem::path arg1_fromstring;       /** p */
         std::error_code *arg2 = nullptr;       /** ec */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -1850,6 +2098,31 @@ OLUA_LIB int luaopen_fs_recursive_directory_iterator(lua_State *L)
 }
 OLUA_END_DECLS
 
+static int _olua_fun_std_filesystem_directory_entry___eq(lua_State *L)
+{
+    try {
+        olua_startinvoke(L);
+
+        std::filesystem::directory_entry *self = nullptr;
+        std::filesystem::directory_entry *arg1;       /** rhs */
+
+        olua_to_object(L, 1, &self, "fs.directory_entry");
+        olua_check_object(L, 2, &arg1, "fs.directory_entry");
+
+        // @operator(operator==) bool operator==(const std::filesystem::directory_entry &rhs)
+        bool ret = (*self) == (*arg1);
+        int num_ret = olua_push_bool(L, ret);
+
+        olua_endinvoke(L);
+
+        return num_ret;
+    } catch (std::exception &e) {
+        lua_pushfstring(L, "std::filesystem::directory_entry::__eq(): %s", e.what());
+        luaL_error(L, olua_tostring(L, -1));
+        return 0;
+    }
+}
+
 static int _olua_fun_std_filesystem_directory_entry___gc(lua_State *L)
 {
     olua_startinvoke(L);
@@ -1862,6 +2135,56 @@ static int _olua_fun_std_filesystem_directory_entry___gc(lua_State *L)
     return 0;
 }
 
+static int _olua_fun_std_filesystem_directory_entry___le(lua_State *L)
+{
+    try {
+        olua_startinvoke(L);
+
+        std::filesystem::directory_entry *self = nullptr;
+        std::filesystem::directory_entry *arg1;       /** rhs */
+
+        olua_to_object(L, 1, &self, "fs.directory_entry");
+        olua_check_object(L, 2, &arg1, "fs.directory_entry");
+
+        // @operator(operator<=) bool operator<=(const std::filesystem::directory_entry &rhs)
+        bool ret = (*self) <= (*arg1);
+        int num_ret = olua_push_bool(L, ret);
+
+        olua_endinvoke(L);
+
+        return num_ret;
+    } catch (std::exception &e) {
+        lua_pushfstring(L, "std::filesystem::directory_entry::__le(): %s", e.what());
+        luaL_error(L, olua_tostring(L, -1));
+        return 0;
+    }
+}
+
+static int _olua_fun_std_filesystem_directory_entry___lt(lua_State *L)
+{
+    try {
+        olua_startinvoke(L);
+
+        std::filesystem::directory_entry *self = nullptr;
+        std::filesystem::directory_entry *arg1;       /** rhs */
+
+        olua_to_object(L, 1, &self, "fs.directory_entry");
+        olua_check_object(L, 2, &arg1, "fs.directory_entry");
+
+        // @operator(operator<) bool operator<(const std::filesystem::directory_entry &rhs)
+        bool ret = (*self) < (*arg1);
+        int num_ret = olua_push_bool(L, ret);
+
+        olua_endinvoke(L);
+
+        return num_ret;
+    } catch (std::exception &e) {
+        lua_pushfstring(L, "std::filesystem::directory_entry::__lt(): %s", e.what());
+        luaL_error(L, olua_tostring(L, -1));
+        return 0;
+    }
+}
+
 static int _olua_fun_std_filesystem_directory_entry_assign$1(lua_State *L)
 {
     try {
@@ -1872,8 +2195,8 @@ static int _olua_fun_std_filesystem_directory_entry_assign$1(lua_State *L)
         std::filesystem::path arg1_fromstring;       /** p */
 
         olua_to_object(L, 1, &self, "fs.directory_entry");
-        if (olua_is_string(L, 2)) {
-            arg1_fromstring = olua_tostring(L, 2);
+        if (olua_isstring(L, 2)) {
+            olua_check_string(L, 2, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 2, &arg1, "fs.path");
@@ -1903,8 +2226,8 @@ static int _olua_fun_std_filesystem_directory_entry_assign$2(lua_State *L)
         std::error_code *arg2 = nullptr;       /** ec */
 
         olua_to_object(L, 1, &self, "fs.directory_entry");
-        if (olua_is_string(L, 2)) {
-            arg1_fromstring = olua_tostring(L, 2);
+        if (olua_isstring(L, 2)) {
+            olua_check_string(L, 2, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 2, &arg1, "fs.path");
@@ -1926,17 +2249,17 @@ static int _olua_fun_std_filesystem_directory_entry_assign$2(lua_State *L)
 
 static int _olua_fun_std_filesystem_directory_entry_assign(lua_State *L)
 {
-    int num_args = lua_gettop(L) - 1;
+    int num_args = lua_gettop(L);
 
-    if (num_args == 1) {
-        // if ((olua_is_object(L, 2, "fs.path") || olua_is_string(L, 2))) {
+    if (num_args == 2) {
+        // if ((olua_is_object(L, 1, "fs.directory_entry")) && (olua_is_object(L, 2, "fs.path") || olua_is_string(L, 2))) {
             // void assign(const std::filesystem::path &p)
             return _olua_fun_std_filesystem_directory_entry_assign$1(L);
         // }
     }
 
-    if (num_args == 2) {
-        // if ((olua_is_object(L, 2, "fs.path") || olua_is_string(L, 2)) && (olua_is_object(L, 3, "fs.error_code"))) {
+    if (num_args == 3) {
+        // if ((olua_is_object(L, 1, "fs.directory_entry")) && (olua_is_object(L, 2, "fs.path") || olua_is_string(L, 2)) && (olua_is_object(L, 3, "fs.error_code"))) {
             // void assign(const std::filesystem::path &p, std::error_code &ec)
             return _olua_fun_std_filesystem_directory_entry_assign$2(L);
         // }
@@ -1997,15 +2320,15 @@ static int _olua_fun_std_filesystem_directory_entry_exists$2(lua_State *L)
 
 static int _olua_fun_std_filesystem_directory_entry_exists(lua_State *L)
 {
-    int num_args = lua_gettop(L) - 1;
+    int num_args = lua_gettop(L);
 
-    if (num_args == 0) {
+    if (num_args == 1) {
         // bool exists()
         return _olua_fun_std_filesystem_directory_entry_exists$1(L);
     }
 
-    if (num_args == 1) {
-        // if ((olua_is_object(L, 2, "fs.error_code"))) {
+    if (num_args == 2) {
+        // if ((olua_is_object(L, 1, "fs.directory_entry")) && (olua_is_object(L, 2, "fs.error_code"))) {
             // bool exists(std::error_code &ec)
             return _olua_fun_std_filesystem_directory_entry_exists$2(L);
         // }
@@ -2066,15 +2389,15 @@ static int _olua_fun_std_filesystem_directory_entry_file_size$2(lua_State *L)
 
 static int _olua_fun_std_filesystem_directory_entry_file_size(lua_State *L)
 {
-    int num_args = lua_gettop(L) - 1;
+    int num_args = lua_gettop(L);
 
-    if (num_args == 0) {
+    if (num_args == 1) {
         // uintmax_t file_size()
         return _olua_fun_std_filesystem_directory_entry_file_size$1(L);
     }
 
-    if (num_args == 1) {
-        // if ((olua_is_object(L, 2, "fs.error_code"))) {
+    if (num_args == 2) {
+        // if ((olua_is_object(L, 1, "fs.directory_entry")) && (olua_is_object(L, 2, "fs.error_code"))) {
             // uintmax_t file_size(std::error_code &ec)
             return _olua_fun_std_filesystem_directory_entry_file_size$2(L);
         // }
@@ -2135,15 +2458,15 @@ static int _olua_fun_std_filesystem_directory_entry_hard_link_count$2(lua_State 
 
 static int _olua_fun_std_filesystem_directory_entry_hard_link_count(lua_State *L)
 {
-    int num_args = lua_gettop(L) - 1;
+    int num_args = lua_gettop(L);
 
-    if (num_args == 0) {
+    if (num_args == 1) {
         // uintmax_t hard_link_count()
         return _olua_fun_std_filesystem_directory_entry_hard_link_count$1(L);
     }
 
-    if (num_args == 1) {
-        // if ((olua_is_object(L, 2, "fs.error_code"))) {
+    if (num_args == 2) {
+        // if ((olua_is_object(L, 1, "fs.directory_entry")) && (olua_is_object(L, 2, "fs.error_code"))) {
             // uintmax_t hard_link_count(std::error_code &ec)
             return _olua_fun_std_filesystem_directory_entry_hard_link_count$2(L);
         // }
@@ -2204,15 +2527,15 @@ static int _olua_fun_std_filesystem_directory_entry_is_block_file$2(lua_State *L
 
 static int _olua_fun_std_filesystem_directory_entry_is_block_file(lua_State *L)
 {
-    int num_args = lua_gettop(L) - 1;
+    int num_args = lua_gettop(L);
 
-    if (num_args == 0) {
+    if (num_args == 1) {
         // bool is_block_file()
         return _olua_fun_std_filesystem_directory_entry_is_block_file$1(L);
     }
 
-    if (num_args == 1) {
-        // if ((olua_is_object(L, 2, "fs.error_code"))) {
+    if (num_args == 2) {
+        // if ((olua_is_object(L, 1, "fs.directory_entry")) && (olua_is_object(L, 2, "fs.error_code"))) {
             // bool is_block_file(std::error_code &ec)
             return _olua_fun_std_filesystem_directory_entry_is_block_file$2(L);
         // }
@@ -2273,15 +2596,15 @@ static int _olua_fun_std_filesystem_directory_entry_is_character_file$2(lua_Stat
 
 static int _olua_fun_std_filesystem_directory_entry_is_character_file(lua_State *L)
 {
-    int num_args = lua_gettop(L) - 1;
+    int num_args = lua_gettop(L);
 
-    if (num_args == 0) {
+    if (num_args == 1) {
         // bool is_character_file()
         return _olua_fun_std_filesystem_directory_entry_is_character_file$1(L);
     }
 
-    if (num_args == 1) {
-        // if ((olua_is_object(L, 2, "fs.error_code"))) {
+    if (num_args == 2) {
+        // if ((olua_is_object(L, 1, "fs.directory_entry")) && (olua_is_object(L, 2, "fs.error_code"))) {
             // bool is_character_file(std::error_code &ec)
             return _olua_fun_std_filesystem_directory_entry_is_character_file$2(L);
         // }
@@ -2342,15 +2665,15 @@ static int _olua_fun_std_filesystem_directory_entry_is_directory$2(lua_State *L)
 
 static int _olua_fun_std_filesystem_directory_entry_is_directory(lua_State *L)
 {
-    int num_args = lua_gettop(L) - 1;
+    int num_args = lua_gettop(L);
 
-    if (num_args == 0) {
+    if (num_args == 1) {
         // bool is_directory()
         return _olua_fun_std_filesystem_directory_entry_is_directory$1(L);
     }
 
-    if (num_args == 1) {
-        // if ((olua_is_object(L, 2, "fs.error_code"))) {
+    if (num_args == 2) {
+        // if ((olua_is_object(L, 1, "fs.directory_entry")) && (olua_is_object(L, 2, "fs.error_code"))) {
             // bool is_directory(std::error_code &ec)
             return _olua_fun_std_filesystem_directory_entry_is_directory$2(L);
         // }
@@ -2411,15 +2734,15 @@ static int _olua_fun_std_filesystem_directory_entry_is_fifo$2(lua_State *L)
 
 static int _olua_fun_std_filesystem_directory_entry_is_fifo(lua_State *L)
 {
-    int num_args = lua_gettop(L) - 1;
+    int num_args = lua_gettop(L);
 
-    if (num_args == 0) {
+    if (num_args == 1) {
         // bool is_fifo()
         return _olua_fun_std_filesystem_directory_entry_is_fifo$1(L);
     }
 
-    if (num_args == 1) {
-        // if ((olua_is_object(L, 2, "fs.error_code"))) {
+    if (num_args == 2) {
+        // if ((olua_is_object(L, 1, "fs.directory_entry")) && (olua_is_object(L, 2, "fs.error_code"))) {
             // bool is_fifo(std::error_code &ec)
             return _olua_fun_std_filesystem_directory_entry_is_fifo$2(L);
         // }
@@ -2480,15 +2803,15 @@ static int _olua_fun_std_filesystem_directory_entry_is_other$2(lua_State *L)
 
 static int _olua_fun_std_filesystem_directory_entry_is_other(lua_State *L)
 {
-    int num_args = lua_gettop(L) - 1;
+    int num_args = lua_gettop(L);
 
-    if (num_args == 0) {
+    if (num_args == 1) {
         // bool is_other()
         return _olua_fun_std_filesystem_directory_entry_is_other$1(L);
     }
 
-    if (num_args == 1) {
-        // if ((olua_is_object(L, 2, "fs.error_code"))) {
+    if (num_args == 2) {
+        // if ((olua_is_object(L, 1, "fs.directory_entry")) && (olua_is_object(L, 2, "fs.error_code"))) {
             // bool is_other(std::error_code &ec)
             return _olua_fun_std_filesystem_directory_entry_is_other$2(L);
         // }
@@ -2549,15 +2872,15 @@ static int _olua_fun_std_filesystem_directory_entry_is_regular_file$2(lua_State 
 
 static int _olua_fun_std_filesystem_directory_entry_is_regular_file(lua_State *L)
 {
-    int num_args = lua_gettop(L) - 1;
+    int num_args = lua_gettop(L);
 
-    if (num_args == 0) {
+    if (num_args == 1) {
         // bool is_regular_file()
         return _olua_fun_std_filesystem_directory_entry_is_regular_file$1(L);
     }
 
-    if (num_args == 1) {
-        // if ((olua_is_object(L, 2, "fs.error_code"))) {
+    if (num_args == 2) {
+        // if ((olua_is_object(L, 1, "fs.directory_entry")) && (olua_is_object(L, 2, "fs.error_code"))) {
             // bool is_regular_file(std::error_code &ec)
             return _olua_fun_std_filesystem_directory_entry_is_regular_file$2(L);
         // }
@@ -2618,15 +2941,15 @@ static int _olua_fun_std_filesystem_directory_entry_is_socket$2(lua_State *L)
 
 static int _olua_fun_std_filesystem_directory_entry_is_socket(lua_State *L)
 {
-    int num_args = lua_gettop(L) - 1;
+    int num_args = lua_gettop(L);
 
-    if (num_args == 0) {
+    if (num_args == 1) {
         // bool is_socket()
         return _olua_fun_std_filesystem_directory_entry_is_socket$1(L);
     }
 
-    if (num_args == 1) {
-        // if ((olua_is_object(L, 2, "fs.error_code"))) {
+    if (num_args == 2) {
+        // if ((olua_is_object(L, 1, "fs.directory_entry")) && (olua_is_object(L, 2, "fs.error_code"))) {
             // bool is_socket(std::error_code &ec)
             return _olua_fun_std_filesystem_directory_entry_is_socket$2(L);
         // }
@@ -2687,15 +3010,15 @@ static int _olua_fun_std_filesystem_directory_entry_is_symlink$2(lua_State *L)
 
 static int _olua_fun_std_filesystem_directory_entry_is_symlink(lua_State *L)
 {
-    int num_args = lua_gettop(L) - 1;
+    int num_args = lua_gettop(L);
 
-    if (num_args == 0) {
+    if (num_args == 1) {
         // bool is_symlink()
         return _olua_fun_std_filesystem_directory_entry_is_symlink$1(L);
     }
 
-    if (num_args == 1) {
-        // if ((olua_is_object(L, 2, "fs.error_code"))) {
+    if (num_args == 2) {
+        // if ((olua_is_object(L, 1, "fs.directory_entry")) && (olua_is_object(L, 2, "fs.error_code"))) {
             // bool is_symlink(std::error_code &ec)
             return _olua_fun_std_filesystem_directory_entry_is_symlink$2(L);
         // }
@@ -2756,15 +3079,15 @@ static int _olua_fun_std_filesystem_directory_entry_last_write_time$2(lua_State 
 
 static int _olua_fun_std_filesystem_directory_entry_last_write_time(lua_State *L)
 {
-    int num_args = lua_gettop(L) - 1;
+    int num_args = lua_gettop(L);
 
-    if (num_args == 0) {
+    if (num_args == 1) {
         // std::filesystem::file_time_type last_write_time()
         return _olua_fun_std_filesystem_directory_entry_last_write_time$1(L);
     }
 
-    if (num_args == 1) {
-        // if ((olua_is_object(L, 2, "fs.error_code"))) {
+    if (num_args == 2) {
+        // if ((olua_is_object(L, 1, "fs.directory_entry")) && (olua_is_object(L, 2, "fs.error_code"))) {
             // std::filesystem::file_time_type last_write_time(std::error_code &ec)
             return _olua_fun_std_filesystem_directory_entry_last_write_time$2(L);
         // }
@@ -2803,8 +3126,8 @@ static int _olua_fun_std_filesystem_directory_entry_new$2(lua_State *L)
         std::filesystem::path *arg1;       /** p */
         std::filesystem::path arg1_fromstring;       /** p */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -2834,8 +3157,8 @@ static int _olua_fun_std_filesystem_directory_entry_new$3(lua_State *L)
         std::filesystem::path arg1_fromstring;       /** p */
         std::error_code *arg2 = nullptr;       /** ec */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -2956,15 +3279,15 @@ static int _olua_fun_std_filesystem_directory_entry_refresh$2(lua_State *L)
 
 static int _olua_fun_std_filesystem_directory_entry_refresh(lua_State *L)
 {
-    int num_args = lua_gettop(L) - 1;
+    int num_args = lua_gettop(L);
 
-    if (num_args == 0) {
+    if (num_args == 1) {
         // void refresh()
         return _olua_fun_std_filesystem_directory_entry_refresh$1(L);
     }
 
-    if (num_args == 1) {
-        // if ((olua_is_object(L, 2, "fs.error_code"))) {
+    if (num_args == 2) {
+        // if ((olua_is_object(L, 1, "fs.directory_entry")) && (olua_is_object(L, 2, "fs.error_code"))) {
             // void refresh(std::error_code &ec)
             return _olua_fun_std_filesystem_directory_entry_refresh$2(L);
         // }
@@ -2985,8 +3308,8 @@ static int _olua_fun_std_filesystem_directory_entry_replace_filename$1(lua_State
         std::filesystem::path arg1_fromstring;       /** p */
 
         olua_to_object(L, 1, &self, "fs.directory_entry");
-        if (olua_is_string(L, 2)) {
-            arg1_fromstring = olua_tostring(L, 2);
+        if (olua_isstring(L, 2)) {
+            olua_check_string(L, 2, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 2, &arg1, "fs.path");
@@ -3016,8 +3339,8 @@ static int _olua_fun_std_filesystem_directory_entry_replace_filename$2(lua_State
         std::error_code *arg2 = nullptr;       /** ec */
 
         olua_to_object(L, 1, &self, "fs.directory_entry");
-        if (olua_is_string(L, 2)) {
-            arg1_fromstring = olua_tostring(L, 2);
+        if (olua_isstring(L, 2)) {
+            olua_check_string(L, 2, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 2, &arg1, "fs.path");
@@ -3039,17 +3362,17 @@ static int _olua_fun_std_filesystem_directory_entry_replace_filename$2(lua_State
 
 static int _olua_fun_std_filesystem_directory_entry_replace_filename(lua_State *L)
 {
-    int num_args = lua_gettop(L) - 1;
+    int num_args = lua_gettop(L);
 
-    if (num_args == 1) {
-        // if ((olua_is_object(L, 2, "fs.path") || olua_is_string(L, 2))) {
+    if (num_args == 2) {
+        // if ((olua_is_object(L, 1, "fs.directory_entry")) && (olua_is_object(L, 2, "fs.path") || olua_is_string(L, 2))) {
             // void replace_filename(const std::filesystem::path &p)
             return _olua_fun_std_filesystem_directory_entry_replace_filename$1(L);
         // }
     }
 
-    if (num_args == 2) {
-        // if ((olua_is_object(L, 2, "fs.path") || olua_is_string(L, 2)) && (olua_is_object(L, 3, "fs.error_code"))) {
+    if (num_args == 3) {
+        // if ((olua_is_object(L, 1, "fs.directory_entry")) && (olua_is_object(L, 2, "fs.path") || olua_is_string(L, 2)) && (olua_is_object(L, 3, "fs.error_code"))) {
             // void replace_filename(const std::filesystem::path &p, std::error_code &ec)
             return _olua_fun_std_filesystem_directory_entry_replace_filename$2(L);
         // }
@@ -3110,15 +3433,15 @@ static int _olua_fun_std_filesystem_directory_entry_status$2(lua_State *L)
 
 static int _olua_fun_std_filesystem_directory_entry_status(lua_State *L)
 {
-    int num_args = lua_gettop(L) - 1;
+    int num_args = lua_gettop(L);
 
-    if (num_args == 0) {
+    if (num_args == 1) {
         // std::filesystem::file_status status()
         return _olua_fun_std_filesystem_directory_entry_status$1(L);
     }
 
-    if (num_args == 1) {
-        // if ((olua_is_object(L, 2, "fs.error_code"))) {
+    if (num_args == 2) {
+        // if ((olua_is_object(L, 1, "fs.directory_entry")) && (olua_is_object(L, 2, "fs.error_code"))) {
             // std::filesystem::file_status status(std::error_code &ec)
             return _olua_fun_std_filesystem_directory_entry_status$2(L);
         // }
@@ -3179,15 +3502,15 @@ static int _olua_fun_std_filesystem_directory_entry_symlink_status$2(lua_State *
 
 static int _olua_fun_std_filesystem_directory_entry_symlink_status(lua_State *L)
 {
-    int num_args = lua_gettop(L) - 1;
+    int num_args = lua_gettop(L);
 
-    if (num_args == 0) {
+    if (num_args == 1) {
         // std::filesystem::file_status symlink_status()
         return _olua_fun_std_filesystem_directory_entry_symlink_status$1(L);
     }
 
-    if (num_args == 1) {
-        // if ((olua_is_object(L, 2, "fs.error_code"))) {
+    if (num_args == 2) {
+        // if ((olua_is_object(L, 1, "fs.directory_entry")) && (olua_is_object(L, 2, "fs.error_code"))) {
             // std::filesystem::file_status symlink_status(std::error_code &ec)
             return _olua_fun_std_filesystem_directory_entry_symlink_status$2(L);
         // }
@@ -3201,7 +3524,10 @@ static int _olua_fun_std_filesystem_directory_entry_symlink_status(lua_State *L)
 static int _olua_cls_fs_directory_entry(lua_State *L)
 {
     oluacls_class<std::filesystem::directory_entry>(L, "fs.directory_entry");
+    oluacls_func(L, "__eq", _olua_fun_std_filesystem_directory_entry___eq);
     oluacls_func(L, "__gc", _olua_fun_std_filesystem_directory_entry___gc);
+    oluacls_func(L, "__le", _olua_fun_std_filesystem_directory_entry___le);
+    oluacls_func(L, "__lt", _olua_fun_std_filesystem_directory_entry___lt);
     oluacls_func(L, "assign", _olua_fun_std_filesystem_directory_entry_assign);
     oluacls_func(L, "exists", _olua_fun_std_filesystem_directory_entry_exists);
     oluacls_func(L, "file_size", _olua_fun_std_filesystem_directory_entry_file_size);
@@ -3236,6 +3562,80 @@ OLUA_LIB int luaopen_fs_directory_entry(lua_State *L)
 }
 OLUA_END_DECLS
 
+static int _olua_fun_std_filesystem_path___div(lua_State *L)
+{
+    try {
+        olua_startinvoke(L);
+
+        std::filesystem::path *arg1;       /** lhs */
+        std::filesystem::path arg1_fromstring;       /** lhs */
+        std::filesystem::path *arg2;       /** rhs */
+        std::filesystem::path arg2_fromstring;       /** rhs */
+
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
+            arg1 = &arg1_fromstring;
+        } else {
+            olua_check_object(L, 1, &arg1, "fs.path");
+        }
+        if (olua_isstring(L, 2)) {
+            olua_check_string(L, 2, &arg2_fromstring);
+            arg2 = &arg2_fromstring;
+        } else {
+            olua_check_object(L, 2, &arg2, "fs.path");
+        }
+
+        // @operator(operator/) static std::filesystem::path operator/(const std::filesystem::path &lhs, const std::filesystem::path &rhs)
+        std::filesystem::path ret = (*arg1) / (*arg2);
+        int num_ret = olua_copy_object(L, ret, "fs.path");
+
+        olua_endinvoke(L);
+
+        return num_ret;
+    } catch (std::exception &e) {
+        lua_pushfstring(L, "std::filesystem::path::__div(): %s", e.what());
+        luaL_error(L, olua_tostring(L, -1));
+        return 0;
+    }
+}
+
+static int _olua_fun_std_filesystem_path___eq(lua_State *L)
+{
+    try {
+        olua_startinvoke(L);
+
+        std::filesystem::path *arg1;       /** lhs */
+        std::filesystem::path arg1_fromstring;       /** lhs */
+        std::filesystem::path *arg2;       /** rhs */
+        std::filesystem::path arg2_fromstring;       /** rhs */
+
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
+            arg1 = &arg1_fromstring;
+        } else {
+            olua_check_object(L, 1, &arg1, "fs.path");
+        }
+        if (olua_isstring(L, 2)) {
+            olua_check_string(L, 2, &arg2_fromstring);
+            arg2 = &arg2_fromstring;
+        } else {
+            olua_check_object(L, 2, &arg2, "fs.path");
+        }
+
+        // @operator(operator==) static bool operator==(const std::filesystem::path &lhs, const std::filesystem::path &rhs)
+        bool ret = (*arg1) == (*arg2);
+        int num_ret = olua_push_bool(L, ret);
+
+        olua_endinvoke(L);
+
+        return num_ret;
+    } catch (std::exception &e) {
+        lua_pushfstring(L, "std::filesystem::path::__eq(): %s", e.what());
+        luaL_error(L, olua_tostring(L, -1));
+        return 0;
+    }
+}
+
 static int _olua_fun_std_filesystem_path___gc(lua_State *L)
 {
     olua_startinvoke(L);
@@ -3246,6 +3646,80 @@ static int _olua_fun_std_filesystem_path___gc(lua_State *L)
     olua_endinvoke(L);
 
     return 0;
+}
+
+static int _olua_fun_std_filesystem_path___le(lua_State *L)
+{
+    try {
+        olua_startinvoke(L);
+
+        std::filesystem::path *arg1;       /** lhs */
+        std::filesystem::path arg1_fromstring;       /** lhs */
+        std::filesystem::path *arg2;       /** rhs */
+        std::filesystem::path arg2_fromstring;       /** rhs */
+
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
+            arg1 = &arg1_fromstring;
+        } else {
+            olua_check_object(L, 1, &arg1, "fs.path");
+        }
+        if (olua_isstring(L, 2)) {
+            olua_check_string(L, 2, &arg2_fromstring);
+            arg2 = &arg2_fromstring;
+        } else {
+            olua_check_object(L, 2, &arg2, "fs.path");
+        }
+
+        // @operator(operator<=) static bool operator<=(const std::filesystem::path &lhs, const std::filesystem::path &rhs)
+        bool ret = (*arg1) <= (*arg2);
+        int num_ret = olua_push_bool(L, ret);
+
+        olua_endinvoke(L);
+
+        return num_ret;
+    } catch (std::exception &e) {
+        lua_pushfstring(L, "std::filesystem::path::__le(): %s", e.what());
+        luaL_error(L, olua_tostring(L, -1));
+        return 0;
+    }
+}
+
+static int _olua_fun_std_filesystem_path___lt(lua_State *L)
+{
+    try {
+        olua_startinvoke(L);
+
+        std::filesystem::path *arg1;       /** lhs */
+        std::filesystem::path arg1_fromstring;       /** lhs */
+        std::filesystem::path *arg2;       /** rhs */
+        std::filesystem::path arg2_fromstring;       /** rhs */
+
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
+            arg1 = &arg1_fromstring;
+        } else {
+            olua_check_object(L, 1, &arg1, "fs.path");
+        }
+        if (olua_isstring(L, 2)) {
+            olua_check_string(L, 2, &arg2_fromstring);
+            arg2 = &arg2_fromstring;
+        } else {
+            olua_check_object(L, 2, &arg2, "fs.path");
+        }
+
+        // @operator(operator<) static bool operator<(const std::filesystem::path &lhs, const std::filesystem::path &rhs)
+        bool ret = (*arg1) < (*arg2);
+        int num_ret = olua_push_bool(L, ret);
+
+        olua_endinvoke(L);
+
+        return num_ret;
+    } catch (std::exception &e) {
+        lua_pushfstring(L, "std::filesystem::path::__lt(): %s", e.what());
+        luaL_error(L, olua_tostring(L, -1));
+        return 0;
+    }
 }
 
 static int _olua_fun_std_filesystem_path_assign(lua_State *L)
@@ -3328,8 +3802,8 @@ static int _olua_fun_std_filesystem_path_compare$1(lua_State *L)
         std::filesystem::path arg1_fromstring;       /** p */
 
         olua_to_object(L, 1, &self, "fs.path");
-        if (olua_is_string(L, 2)) {
-            arg1_fromstring = olua_tostring(L, 2);
+        if (olua_isstring(L, 2)) {
+            olua_check_string(L, 2, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 2, &arg1, "fs.path");
@@ -3401,20 +3875,20 @@ static int _olua_fun_std_filesystem_path_compare$3(lua_State *L)
 
 static int _olua_fun_std_filesystem_path_compare(lua_State *L)
 {
-    int num_args = lua_gettop(L) - 1;
+    int num_args = lua_gettop(L);
 
-    if (num_args == 1) {
-        if ((olua_is_object(L, 2, "fs.path") || olua_is_string(L, 2))) {
+    if (num_args == 2) {
+        if ((olua_is_object(L, 1, "fs.path")) && (olua_is_object(L, 2, "fs.path") || olua_is_string(L, 2))) {
             // int compare(const std::filesystem::path &p)
             return _olua_fun_std_filesystem_path_compare$1(L);
         }
 
-        if ((olua_is_string(L, 2))) {
+        if ((olua_is_object(L, 1, "fs.path")) && (olua_is_string(L, 2))) {
             // int compare(const std::filesystem::path::string_type &s)
             return _olua_fun_std_filesystem_path_compare$2(L);
         }
 
-        // if ((olua_is_string(L, 2))) {
+        // if ((olua_is_object(L, 1, "fs.path")) && (olua_is_string(L, 2))) {
             // int compare(const std::filesystem::path::value_type *s)
             return _olua_fun_std_filesystem_path_compare$3(L);
         // }
@@ -3803,8 +4277,8 @@ static int _olua_fun_std_filesystem_path_lexically_proximate(lua_State *L)
         std::filesystem::path arg1_fromstring;       /** base */
 
         olua_to_object(L, 1, &self, "fs.path");
-        if (olua_is_string(L, 2)) {
-            arg1_fromstring = olua_tostring(L, 2);
+        if (olua_isstring(L, 2)) {
+            olua_check_string(L, 2, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 2, &arg1, "fs.path");
@@ -3834,8 +4308,8 @@ static int _olua_fun_std_filesystem_path_lexically_relative(lua_State *L)
         std::filesystem::path arg1_fromstring;       /** base */
 
         olua_to_object(L, 1, &self, "fs.path");
-        if (olua_is_string(L, 2)) {
-            arg1_fromstring = olua_tostring(L, 2);
+        if (olua_isstring(L, 2)) {
+            olua_check_string(L, 2, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 2, &arg1, "fs.path");
@@ -4022,6 +4496,29 @@ static int _olua_fun_std_filesystem_path_parent_path(lua_State *L)
     }
 }
 
+static int _olua_fun_std_filesystem_path_posix_path(lua_State *L)
+{
+    try {
+        olua_startinvoke(L);
+
+        std::filesystem::path *arg1 = nullptr;       /** self */
+
+        olua_check_object(L, 1, &arg1, "fs.path");
+
+        // @extend(fs::path_extend) static std::filesystem::path posix_path(std::filesystem::path *self)
+        std::filesystem::path ret = fs::path_extend::posix_path(arg1);
+        int num_ret = olua_copy_object(L, ret, "fs.path");
+
+        olua_endinvoke(L);
+
+        return num_ret;
+    } catch (std::exception &e) {
+        lua_pushfstring(L, "std::filesystem::path::posix_path(): %s", e.what());
+        luaL_error(L, olua_tostring(L, -1));
+        return 0;
+    }
+}
+
 static int _olua_fun_std_filesystem_path_relative_path(lua_State *L)
 {
     try {
@@ -4078,8 +4575,8 @@ static int _olua_fun_std_filesystem_path_replace_extension$1(lua_State *L)
         std::filesystem::path arg1_fromstring;       /** replacement */
 
         olua_to_object(L, 1, &self, "fs.path");
-        if (olua_is_string(L, 2)) {
-            arg1_fromstring = olua_tostring(L, 2);
+        if (olua_isstring(L, 2)) {
+            olua_check_string(L, 2, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 2, &arg1, "fs.path");
@@ -4124,15 +4621,15 @@ static int _olua_fun_std_filesystem_path_replace_extension$2(lua_State *L)
 
 static int _olua_fun_std_filesystem_path_replace_extension(lua_State *L)
 {
-    int num_args = lua_gettop(L) - 1;
+    int num_args = lua_gettop(L);
 
-    if (num_args == 0) {
+    if (num_args == 1) {
         // std::filesystem::path &replace_extension()
         return _olua_fun_std_filesystem_path_replace_extension$2(L);
     }
 
-    if (num_args == 1) {
-        // if ((olua_is_object(L, 2, "fs.path") || olua_is_string(L, 2))) {
+    if (num_args == 2) {
+        // if ((olua_is_object(L, 1, "fs.path")) && (olua_is_object(L, 2, "fs.path") || olua_is_string(L, 2))) {
             // std::filesystem::path &replace_extension(@optional const std::filesystem::path &replacement)
             return _olua_fun_std_filesystem_path_replace_extension$1(L);
         // }
@@ -4153,8 +4650,8 @@ static int _olua_fun_std_filesystem_path_replace_filename(lua_State *L)
         std::filesystem::path arg1_fromstring;       /** replacement */
 
         olua_to_object(L, 1, &self, "fs.path");
-        if (olua_is_string(L, 2)) {
-            arg1_fromstring = olua_tostring(L, 2);
+        if (olua_isstring(L, 2)) {
+            olua_check_string(L, 2, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 2, &arg1, "fs.path");
@@ -4339,7 +4836,11 @@ static int _olua_fun_std_filesystem_path_u8string(lua_State *L)
 static int _olua_cls_fs_path(lua_State *L)
 {
     oluacls_class<std::filesystem::path>(L, "fs.path");
+    oluacls_func(L, "__div", _olua_fun_std_filesystem_path___div);
+    oluacls_func(L, "__eq", _olua_fun_std_filesystem_path___eq);
     oluacls_func(L, "__gc", _olua_fun_std_filesystem_path___gc);
+    oluacls_func(L, "__le", _olua_fun_std_filesystem_path___le);
+    oluacls_func(L, "__lt", _olua_fun_std_filesystem_path___lt);
     oluacls_func(L, "assign", _olua_fun_std_filesystem_path_assign);
     oluacls_func(L, "c_str", _olua_fun_std_filesystem_path_c_str);
     oluacls_func(L, "clear", _olua_fun_std_filesystem_path_clear);
@@ -4366,6 +4867,7 @@ static int _olua_cls_fs_path(lua_State *L)
     oluacls_func(L, "native", _olua_fun_std_filesystem_path_native);
     oluacls_func(L, "new", _olua_fun_std_filesystem_path_new);
     oluacls_func(L, "parent_path", _olua_fun_std_filesystem_path_parent_path);
+    oluacls_func(L, "posix_path", _olua_fun_std_filesystem_path_posix_path);
     oluacls_func(L, "relative_path", _olua_fun_std_filesystem_path_relative_path);
     oluacls_func(L, "remove_filename", _olua_fun_std_filesystem_path_remove_filename);
     oluacls_func(L, "replace_extension", _olua_fun_std_filesystem_path_replace_extension);
@@ -4401,8 +4903,8 @@ static int _olua_fun_std_filesystem_absolute$1(lua_State *L)
         std::filesystem::path *arg1;       /** p */
         std::filesystem::path arg1_fromstring;       /** p */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -4431,8 +4933,8 @@ static int _olua_fun_std_filesystem_absolute$2(lua_State *L)
         std::filesystem::path arg1_fromstring;       /** p */
         std::error_code *arg2 = nullptr;       /** ec */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -4484,8 +4986,8 @@ static int _olua_fun_std_filesystem_canonical$1(lua_State *L)
         std::filesystem::path *arg1;       /** p */
         std::filesystem::path arg1_fromstring;       /** p */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -4514,8 +5016,8 @@ static int _olua_fun_std_filesystem_canonical$2(lua_State *L)
         std::filesystem::path arg1_fromstring;       /** p */
         std::error_code *arg2 = nullptr;       /** ec */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -4569,14 +5071,14 @@ static int _olua_fun_std_filesystem_copy$1(lua_State *L)
         std::filesystem::path *arg2;       /** to */
         std::filesystem::path arg2_fromstring;       /** to */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
         }
-        if (olua_is_string(L, 2)) {
-            arg2_fromstring = olua_tostring(L, 2);
+        if (olua_isstring(L, 2)) {
+            olua_check_string(L, 2, &arg2_fromstring);
             arg2 = &arg2_fromstring;
         } else {
             olua_check_object(L, 2, &arg2, "fs.path");
@@ -4606,14 +5108,14 @@ static int _olua_fun_std_filesystem_copy$2(lua_State *L)
         std::filesystem::path arg2_fromstring;       /** to */
         std::error_code *arg3 = nullptr;       /** ec */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
         }
-        if (olua_is_string(L, 2)) {
-            arg2_fromstring = olua_tostring(L, 2);
+        if (olua_isstring(L, 2)) {
+            olua_check_string(L, 2, &arg2_fromstring);
             arg2 = &arg2_fromstring;
         } else {
             olua_check_object(L, 2, &arg2, "fs.path");
@@ -4644,14 +5146,14 @@ static int _olua_fun_std_filesystem_copy$3(lua_State *L)
         std::filesystem::path arg2_fromstring;       /** to */
         std::filesystem::copy_options arg3 = (std::filesystem::copy_options)0;       /** opt */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
         }
-        if (olua_is_string(L, 2)) {
-            arg2_fromstring = olua_tostring(L, 2);
+        if (olua_isstring(L, 2)) {
+            olua_check_string(L, 2, &arg2_fromstring);
             arg2 = &arg2_fromstring;
         } else {
             olua_check_object(L, 2, &arg2, "fs.path");
@@ -4683,14 +5185,14 @@ static int _olua_fun_std_filesystem_copy$4(lua_State *L)
         std::filesystem::copy_options arg3 = (std::filesystem::copy_options)0;       /** opt */
         std::error_code *arg4 = nullptr;       /** ec */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
         }
-        if (olua_is_string(L, 2)) {
-            arg2_fromstring = olua_tostring(L, 2);
+        if (olua_isstring(L, 2)) {
+            olua_check_string(L, 2, &arg2_fromstring);
             arg2 = &arg2_fromstring;
         } else {
             olua_check_object(L, 2, &arg2, "fs.path");
@@ -4756,14 +5258,14 @@ static int _olua_fun_std_filesystem_copy_file$1(lua_State *L)
         std::filesystem::path *arg2;       /** to */
         std::filesystem::path arg2_fromstring;       /** to */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
         }
-        if (olua_is_string(L, 2)) {
-            arg2_fromstring = olua_tostring(L, 2);
+        if (olua_isstring(L, 2)) {
+            olua_check_string(L, 2, &arg2_fromstring);
             arg2 = &arg2_fromstring;
         } else {
             olua_check_object(L, 2, &arg2, "fs.path");
@@ -4794,14 +5296,14 @@ static int _olua_fun_std_filesystem_copy_file$2(lua_State *L)
         std::filesystem::path arg2_fromstring;       /** to */
         std::error_code *arg3 = nullptr;       /** ec */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
         }
-        if (olua_is_string(L, 2)) {
-            arg2_fromstring = olua_tostring(L, 2);
+        if (olua_isstring(L, 2)) {
+            olua_check_string(L, 2, &arg2_fromstring);
             arg2 = &arg2_fromstring;
         } else {
             olua_check_object(L, 2, &arg2, "fs.path");
@@ -4833,14 +5335,14 @@ static int _olua_fun_std_filesystem_copy_file$3(lua_State *L)
         std::filesystem::path arg2_fromstring;       /** to */
         std::filesystem::copy_options arg3 = (std::filesystem::copy_options)0;       /** opt */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
         }
-        if (olua_is_string(L, 2)) {
-            arg2_fromstring = olua_tostring(L, 2);
+        if (olua_isstring(L, 2)) {
+            olua_check_string(L, 2, &arg2_fromstring);
             arg2 = &arg2_fromstring;
         } else {
             olua_check_object(L, 2, &arg2, "fs.path");
@@ -4873,14 +5375,14 @@ static int _olua_fun_std_filesystem_copy_file$4(lua_State *L)
         std::filesystem::copy_options arg3 = (std::filesystem::copy_options)0;       /** opt */
         std::error_code *arg4 = nullptr;       /** ec */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
         }
-        if (olua_is_string(L, 2)) {
-            arg2_fromstring = olua_tostring(L, 2);
+        if (olua_isstring(L, 2)) {
+            olua_check_string(L, 2, &arg2_fromstring);
             arg2 = &arg2_fromstring;
         } else {
             olua_check_object(L, 2, &arg2, "fs.path");
@@ -4947,14 +5449,14 @@ static int _olua_fun_std_filesystem_copy_symlink$1(lua_State *L)
         std::filesystem::path *arg2;       /** new */
         std::filesystem::path arg2_fromstring;       /** new */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
         }
-        if (olua_is_string(L, 2)) {
-            arg2_fromstring = olua_tostring(L, 2);
+        if (olua_isstring(L, 2)) {
+            olua_check_string(L, 2, &arg2_fromstring);
             arg2 = &arg2_fromstring;
         } else {
             olua_check_object(L, 2, &arg2, "fs.path");
@@ -4984,14 +5486,14 @@ static int _olua_fun_std_filesystem_copy_symlink$2(lua_State *L)
         std::filesystem::path arg2_fromstring;       /** new */
         std::error_code *arg3 = nullptr;       /** ec */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
         }
-        if (olua_is_string(L, 2)) {
-            arg2_fromstring = olua_tostring(L, 2);
+        if (olua_isstring(L, 2)) {
+            olua_check_string(L, 2, &arg2_fromstring);
             arg2 = &arg2_fromstring;
         } else {
             olua_check_object(L, 2, &arg2, "fs.path");
@@ -5042,8 +5544,8 @@ static int _olua_fun_std_filesystem_create_directories$1(lua_State *L)
         std::filesystem::path *arg1;       /** p */
         std::filesystem::path arg1_fromstring;       /** p */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -5072,8 +5574,8 @@ static int _olua_fun_std_filesystem_create_directories$2(lua_State *L)
         std::filesystem::path arg1_fromstring;       /** p */
         std::error_code *arg2 = nullptr;       /** ec */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -5125,8 +5627,8 @@ static int _olua_fun_std_filesystem_create_directory$1(lua_State *L)
         std::filesystem::path *arg1;       /** p */
         std::filesystem::path arg1_fromstring;       /** p */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -5155,8 +5657,8 @@ static int _olua_fun_std_filesystem_create_directory$2(lua_State *L)
         std::filesystem::path arg1_fromstring;       /** p */
         std::error_code *arg2 = nullptr;       /** ec */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -5187,14 +5689,14 @@ static int _olua_fun_std_filesystem_create_directory$3(lua_State *L)
         std::filesystem::path *arg2;       /** attrs */
         std::filesystem::path arg2_fromstring;       /** attrs */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
         }
-        if (olua_is_string(L, 2)) {
-            arg2_fromstring = olua_tostring(L, 2);
+        if (olua_isstring(L, 2)) {
+            olua_check_string(L, 2, &arg2_fromstring);
             arg2 = &arg2_fromstring;
         } else {
             olua_check_object(L, 2, &arg2, "fs.path");
@@ -5225,14 +5727,14 @@ static int _olua_fun_std_filesystem_create_directory$4(lua_State *L)
         std::filesystem::path arg2_fromstring;       /** attrs */
         std::error_code *arg3 = nullptr;       /** ec */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
         }
-        if (olua_is_string(L, 2)) {
-            arg2_fromstring = olua_tostring(L, 2);
+        if (olua_isstring(L, 2)) {
+            olua_check_string(L, 2, &arg2_fromstring);
             arg2 = &arg2_fromstring;
         } else {
             olua_check_object(L, 2, &arg2, "fs.path");
@@ -5298,14 +5800,14 @@ static int _olua_fun_std_filesystem_create_directory_symlink$1(lua_State *L)
         std::filesystem::path *arg2;       /** new */
         std::filesystem::path arg2_fromstring;       /** new */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
         }
-        if (olua_is_string(L, 2)) {
-            arg2_fromstring = olua_tostring(L, 2);
+        if (olua_isstring(L, 2)) {
+            olua_check_string(L, 2, &arg2_fromstring);
             arg2 = &arg2_fromstring;
         } else {
             olua_check_object(L, 2, &arg2, "fs.path");
@@ -5335,14 +5837,14 @@ static int _olua_fun_std_filesystem_create_directory_symlink$2(lua_State *L)
         std::filesystem::path arg2_fromstring;       /** new */
         std::error_code *arg3 = nullptr;       /** ec */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
         }
-        if (olua_is_string(L, 2)) {
-            arg2_fromstring = olua_tostring(L, 2);
+        if (olua_isstring(L, 2)) {
+            olua_check_string(L, 2, &arg2_fromstring);
             arg2 = &arg2_fromstring;
         } else {
             olua_check_object(L, 2, &arg2, "fs.path");
@@ -5395,14 +5897,14 @@ static int _olua_fun_std_filesystem_create_hard_link$1(lua_State *L)
         std::filesystem::path *arg2;       /** new */
         std::filesystem::path arg2_fromstring;       /** new */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
         }
-        if (olua_is_string(L, 2)) {
-            arg2_fromstring = olua_tostring(L, 2);
+        if (olua_isstring(L, 2)) {
+            olua_check_string(L, 2, &arg2_fromstring);
             arg2 = &arg2_fromstring;
         } else {
             olua_check_object(L, 2, &arg2, "fs.path");
@@ -5432,14 +5934,14 @@ static int _olua_fun_std_filesystem_create_hard_link$2(lua_State *L)
         std::filesystem::path arg2_fromstring;       /** new */
         std::error_code *arg3 = nullptr;       /** ec */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
         }
-        if (olua_is_string(L, 2)) {
-            arg2_fromstring = olua_tostring(L, 2);
+        if (olua_isstring(L, 2)) {
+            olua_check_string(L, 2, &arg2_fromstring);
             arg2 = &arg2_fromstring;
         } else {
             olua_check_object(L, 2, &arg2, "fs.path");
@@ -5492,14 +5994,14 @@ static int _olua_fun_std_filesystem_create_symlink$1(lua_State *L)
         std::filesystem::path *arg2;       /** new */
         std::filesystem::path arg2_fromstring;       /** new */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
         }
-        if (olua_is_string(L, 2)) {
-            arg2_fromstring = olua_tostring(L, 2);
+        if (olua_isstring(L, 2)) {
+            olua_check_string(L, 2, &arg2_fromstring);
             arg2 = &arg2_fromstring;
         } else {
             olua_check_object(L, 2, &arg2, "fs.path");
@@ -5529,14 +6031,14 @@ static int _olua_fun_std_filesystem_create_symlink$2(lua_State *L)
         std::filesystem::path arg2_fromstring;       /** new */
         std::error_code *arg3 = nullptr;       /** ec */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
         }
-        if (olua_is_string(L, 2)) {
-            arg2_fromstring = olua_tostring(L, 2);
+        if (olua_isstring(L, 2)) {
+            olua_check_string(L, 2, &arg2_fromstring);
             arg2 = &arg2_fromstring;
         } else {
             olua_check_object(L, 2, &arg2, "fs.path");
@@ -5629,8 +6131,8 @@ static int _olua_fun_std_filesystem_current_path$3(lua_State *L)
         std::filesystem::path *arg1;       /** p */
         std::filesystem::path arg1_fromstring;       /** p */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -5658,8 +6160,8 @@ static int _olua_fun_std_filesystem_current_path$4(lua_State *L)
         std::filesystem::path arg1_fromstring;       /** p */
         std::error_code *arg2 = nullptr;       /** ec */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -5722,14 +6224,14 @@ static int _olua_fun_std_filesystem_equivalent$1(lua_State *L)
         std::filesystem::path *arg2;       /** p2 */
         std::filesystem::path arg2_fromstring;       /** p2 */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
         }
-        if (olua_is_string(L, 2)) {
-            arg2_fromstring = olua_tostring(L, 2);
+        if (olua_isstring(L, 2)) {
+            olua_check_string(L, 2, &arg2_fromstring);
             arg2 = &arg2_fromstring;
         } else {
             olua_check_object(L, 2, &arg2, "fs.path");
@@ -5760,14 +6262,14 @@ static int _olua_fun_std_filesystem_equivalent$2(lua_State *L)
         std::filesystem::path arg2_fromstring;       /** p2 */
         std::error_code *arg3 = nullptr;       /** ec */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
         }
-        if (olua_is_string(L, 2)) {
-            arg2_fromstring = olua_tostring(L, 2);
+        if (olua_isstring(L, 2)) {
+            olua_check_string(L, 2, &arg2_fromstring);
             arg2 = &arg2_fromstring;
         } else {
             olua_check_object(L, 2, &arg2, "fs.path");
@@ -5842,8 +6344,8 @@ static int _olua_fun_std_filesystem_exists$2(lua_State *L)
         std::filesystem::path *arg1;       /** p */
         std::filesystem::path arg1_fromstring;       /** p */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -5872,8 +6374,8 @@ static int _olua_fun_std_filesystem_exists$3(lua_State *L)
         std::filesystem::path arg1_fromstring;       /** p */
         std::error_code *arg2 = nullptr;       /** ec */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -5930,8 +6432,8 @@ static int _olua_fun_std_filesystem_file_size$1(lua_State *L)
         std::filesystem::path *arg1;       /** p */
         std::filesystem::path arg1_fromstring;       /** p */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -5960,8 +6462,8 @@ static int _olua_fun_std_filesystem_file_size$2(lua_State *L)
         std::filesystem::path arg1_fromstring;       /** p */
         std::error_code *arg2 = nullptr;       /** ec */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -6013,8 +6515,8 @@ static int _olua_fun_std_filesystem_hard_link_count$1(lua_State *L)
         std::filesystem::path *arg1;       /** p */
         std::filesystem::path arg1_fromstring;       /** p */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -6043,8 +6545,8 @@ static int _olua_fun_std_filesystem_hard_link_count$2(lua_State *L)
         std::filesystem::path arg1_fromstring;       /** p */
         std::error_code *arg2 = nullptr;       /** ec */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -6096,8 +6598,8 @@ static int _olua_fun_std_filesystem_hash_value(lua_State *L)
         std::filesystem::path *arg1;       /** p */
         std::filesystem::path arg1_fromstring;       /** p */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -6148,8 +6650,8 @@ static int _olua_fun_std_filesystem_is_block_file$2(lua_State *L)
         std::filesystem::path *arg1;       /** p */
         std::filesystem::path arg1_fromstring;       /** p */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -6178,8 +6680,8 @@ static int _olua_fun_std_filesystem_is_block_file$3(lua_State *L)
         std::filesystem::path arg1_fromstring;       /** p */
         std::error_code *arg2 = nullptr;       /** ec */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -6259,8 +6761,8 @@ static int _olua_fun_std_filesystem_is_character_file$2(lua_State *L)
         std::filesystem::path *arg1;       /** p */
         std::filesystem::path arg1_fromstring;       /** p */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -6289,8 +6791,8 @@ static int _olua_fun_std_filesystem_is_character_file$3(lua_State *L)
         std::filesystem::path arg1_fromstring;       /** p */
         std::error_code *arg2 = nullptr;       /** ec */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -6370,8 +6872,8 @@ static int _olua_fun_std_filesystem_is_directory$2(lua_State *L)
         std::filesystem::path *arg1;       /** p */
         std::filesystem::path arg1_fromstring;       /** p */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -6400,8 +6902,8 @@ static int _olua_fun_std_filesystem_is_directory$3(lua_State *L)
         std::filesystem::path arg1_fromstring;       /** p */
         std::error_code *arg2 = nullptr;       /** ec */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -6458,8 +6960,8 @@ static int _olua_fun_std_filesystem_is_empty$1(lua_State *L)
         std::filesystem::path *arg1;       /** p */
         std::filesystem::path arg1_fromstring;       /** p */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -6488,8 +6990,8 @@ static int _olua_fun_std_filesystem_is_empty$2(lua_State *L)
         std::filesystem::path arg1_fromstring;       /** p */
         std::error_code *arg2 = nullptr;       /** ec */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -6564,8 +7066,8 @@ static int _olua_fun_std_filesystem_is_fifo$2(lua_State *L)
         std::filesystem::path *arg1;       /** p */
         std::filesystem::path arg1_fromstring;       /** p */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -6594,8 +7096,8 @@ static int _olua_fun_std_filesystem_is_fifo$3(lua_State *L)
         std::filesystem::path arg1_fromstring;       /** p */
         std::error_code *arg2 = nullptr;       /** ec */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -6675,8 +7177,8 @@ static int _olua_fun_std_filesystem_is_other$2(lua_State *L)
         std::filesystem::path *arg1;       /** p */
         std::filesystem::path arg1_fromstring;       /** p */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -6705,8 +7207,8 @@ static int _olua_fun_std_filesystem_is_other$3(lua_State *L)
         std::filesystem::path arg1_fromstring;       /** p */
         std::error_code *arg2 = nullptr;       /** ec */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -6786,8 +7288,8 @@ static int _olua_fun_std_filesystem_is_regular_file$2(lua_State *L)
         std::filesystem::path *arg1;       /** p */
         std::filesystem::path arg1_fromstring;       /** p */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -6816,8 +7318,8 @@ static int _olua_fun_std_filesystem_is_regular_file$3(lua_State *L)
         std::filesystem::path arg1_fromstring;       /** p */
         std::error_code *arg2 = nullptr;       /** ec */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -6897,8 +7399,8 @@ static int _olua_fun_std_filesystem_is_socket$2(lua_State *L)
         std::filesystem::path *arg1;       /** p */
         std::filesystem::path arg1_fromstring;       /** p */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -6927,8 +7429,8 @@ static int _olua_fun_std_filesystem_is_socket$3(lua_State *L)
         std::filesystem::path arg1_fromstring;       /** p */
         std::error_code *arg2 = nullptr;       /** ec */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -7008,8 +7510,8 @@ static int _olua_fun_std_filesystem_is_symlink$2(lua_State *L)
         std::filesystem::path *arg1;       /** p */
         std::filesystem::path arg1_fromstring;       /** p */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -7038,8 +7540,8 @@ static int _olua_fun_std_filesystem_is_symlink$3(lua_State *L)
         std::filesystem::path arg1_fromstring;       /** p */
         std::error_code *arg2 = nullptr;       /** ec */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -7096,8 +7598,8 @@ static int _olua_fun_std_filesystem_last_write_time$1(lua_State *L)
         std::filesystem::path *arg1;       /** p */
         std::filesystem::path arg1_fromstring;       /** p */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -7126,8 +7628,8 @@ static int _olua_fun_std_filesystem_last_write_time$2(lua_State *L)
         std::filesystem::path arg1_fromstring;       /** p */
         std::error_code *arg2 = nullptr;       /** ec */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -7157,8 +7659,8 @@ static int _olua_fun_std_filesystem_last_write_time$3(lua_State *L)
         std::filesystem::path arg1_fromstring;       /** p */
         std::filesystem::file_time_type *arg2;       /** t */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -7188,8 +7690,8 @@ static int _olua_fun_std_filesystem_last_write_time$4(lua_State *L)
         std::filesystem::file_time_type *arg2;       /** t */
         std::error_code *arg3 = nullptr;       /** ec */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -7255,8 +7757,8 @@ static int _olua_fun_std_filesystem_permissions$1(lua_State *L)
         std::filesystem::perms arg2 = (std::filesystem::perms)0;       /** prms */
         std::filesystem::perm_options arg3 = (std::filesystem::perm_options)0;       /** opts */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -7286,8 +7788,8 @@ static int _olua_fun_std_filesystem_permissions$2(lua_State *L)
         std::filesystem::path arg1_fromstring;       /** p */
         std::filesystem::perms arg2 = (std::filesystem::perms)0;       /** prms */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -7317,8 +7819,8 @@ static int _olua_fun_std_filesystem_permissions$3(lua_State *L)
         std::filesystem::perms arg2 = (std::filesystem::perms)0;       /** prms */
         std::error_code *arg3 = nullptr;       /** ec */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -7350,8 +7852,8 @@ static int _olua_fun_std_filesystem_permissions$4(lua_State *L)
         std::filesystem::perm_options arg3 = (std::filesystem::perm_options)0;       /** opts */
         std::error_code *arg4 = nullptr;       /** ec */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -7419,14 +7921,14 @@ static int _olua_fun_std_filesystem_proximate$1(lua_State *L)
         std::filesystem::path arg2_fromstring;       /** base */
         std::error_code *arg3 = nullptr;       /** ec */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
         }
-        if (olua_is_string(L, 2)) {
-            arg2_fromstring = olua_tostring(L, 2);
+        if (olua_isstring(L, 2)) {
+            olua_check_string(L, 2, &arg2_fromstring);
             arg2 = &arg2_fromstring;
         } else {
             olua_check_object(L, 2, &arg2, "fs.path");
@@ -7456,8 +7958,8 @@ static int _olua_fun_std_filesystem_proximate$2(lua_State *L)
         std::filesystem::path arg1_fromstring;       /** p */
         std::error_code *arg2 = nullptr;       /** ec */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -7488,14 +7990,14 @@ static int _olua_fun_std_filesystem_proximate$3(lua_State *L)
         std::filesystem::path *arg2;       /** base */
         std::filesystem::path arg2_fromstring;       /** base */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
         }
-        if (olua_is_string(L, 2)) {
-            arg2_fromstring = olua_tostring(L, 2);
+        if (olua_isstring(L, 2)) {
+            olua_check_string(L, 2, &arg2_fromstring);
             arg2 = &arg2_fromstring;
         } else {
             olua_check_object(L, 2, &arg2, "fs.path");
@@ -7523,8 +8025,8 @@ static int _olua_fun_std_filesystem_proximate$4(lua_State *L)
         std::filesystem::path *arg1;       /** p */
         std::filesystem::path arg1_fromstring;       /** p */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -7587,8 +8089,8 @@ static int _olua_fun_std_filesystem_read_symlink$1(lua_State *L)
         std::filesystem::path *arg1;       /** p */
         std::filesystem::path arg1_fromstring;       /** p */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -7617,8 +8119,8 @@ static int _olua_fun_std_filesystem_read_symlink$2(lua_State *L)
         std::filesystem::path arg1_fromstring;       /** p */
         std::error_code *arg2 = nullptr;       /** ec */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -7673,14 +8175,14 @@ static int _olua_fun_std_filesystem_relative$1(lua_State *L)
         std::filesystem::path arg2_fromstring;       /** base */
         std::error_code *arg3 = nullptr;       /** ec */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
         }
-        if (olua_is_string(L, 2)) {
-            arg2_fromstring = olua_tostring(L, 2);
+        if (olua_isstring(L, 2)) {
+            olua_check_string(L, 2, &arg2_fromstring);
             arg2 = &arg2_fromstring;
         } else {
             olua_check_object(L, 2, &arg2, "fs.path");
@@ -7710,8 +8212,8 @@ static int _olua_fun_std_filesystem_relative$2(lua_State *L)
         std::filesystem::path arg1_fromstring;       /** p */
         std::error_code *arg2 = nullptr;       /** ec */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -7742,14 +8244,14 @@ static int _olua_fun_std_filesystem_relative$3(lua_State *L)
         std::filesystem::path *arg2;       /** base */
         std::filesystem::path arg2_fromstring;       /** base */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
         }
-        if (olua_is_string(L, 2)) {
-            arg2_fromstring = olua_tostring(L, 2);
+        if (olua_isstring(L, 2)) {
+            olua_check_string(L, 2, &arg2_fromstring);
             arg2 = &arg2_fromstring;
         } else {
             olua_check_object(L, 2, &arg2, "fs.path");
@@ -7777,8 +8279,8 @@ static int _olua_fun_std_filesystem_relative$4(lua_State *L)
         std::filesystem::path *arg1;       /** p */
         std::filesystem::path arg1_fromstring;       /** p */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -7841,8 +8343,8 @@ static int _olua_fun_std_filesystem_remove$1(lua_State *L)
         std::filesystem::path *arg1;       /** p */
         std::filesystem::path arg1_fromstring;       /** p */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -7871,8 +8373,8 @@ static int _olua_fun_std_filesystem_remove$2(lua_State *L)
         std::filesystem::path arg1_fromstring;       /** p */
         std::error_code *arg2 = nullptr;       /** ec */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -7924,8 +8426,8 @@ static int _olua_fun_std_filesystem_remove_all$1(lua_State *L)
         std::filesystem::path *arg1;       /** p */
         std::filesystem::path arg1_fromstring;       /** p */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -7954,8 +8456,8 @@ static int _olua_fun_std_filesystem_remove_all$2(lua_State *L)
         std::filesystem::path arg1_fromstring;       /** p */
         std::error_code *arg2 = nullptr;       /** ec */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -8009,14 +8511,14 @@ static int _olua_fun_std_filesystem_rename$1(lua_State *L)
         std::filesystem::path *arg2;       /** to */
         std::filesystem::path arg2_fromstring;       /** to */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
         }
-        if (olua_is_string(L, 2)) {
-            arg2_fromstring = olua_tostring(L, 2);
+        if (olua_isstring(L, 2)) {
+            olua_check_string(L, 2, &arg2_fromstring);
             arg2 = &arg2_fromstring;
         } else {
             olua_check_object(L, 2, &arg2, "fs.path");
@@ -8046,14 +8548,14 @@ static int _olua_fun_std_filesystem_rename$2(lua_State *L)
         std::filesystem::path arg2_fromstring;       /** to */
         std::error_code *arg3 = nullptr;       /** ec */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
         }
-        if (olua_is_string(L, 2)) {
-            arg2_fromstring = olua_tostring(L, 2);
+        if (olua_isstring(L, 2)) {
+            olua_check_string(L, 2, &arg2_fromstring);
             arg2 = &arg2_fromstring;
         } else {
             olua_check_object(L, 2, &arg2, "fs.path");
@@ -8105,8 +8607,8 @@ static int _olua_fun_std_filesystem_resize_file$1(lua_State *L)
         std::filesystem::path arg1_fromstring;       /** p */
         uintmax_t arg2 = 0;       /** ns */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -8136,8 +8638,8 @@ static int _olua_fun_std_filesystem_resize_file$2(lua_State *L)
         uintmax_t arg2 = 0;       /** ns */
         std::error_code *arg3 = nullptr;       /** ec */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -8189,8 +8691,8 @@ static int _olua_fun_std_filesystem_space$1(lua_State *L)
         std::filesystem::path *arg1;       /** p */
         std::filesystem::path arg1_fromstring;       /** p */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -8219,8 +8721,8 @@ static int _olua_fun_std_filesystem_space$2(lua_State *L)
         std::filesystem::path arg1_fromstring;       /** p */
         std::error_code *arg2 = nullptr;       /** ec */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -8272,8 +8774,8 @@ static int _olua_fun_std_filesystem_status$1(lua_State *L)
         std::filesystem::path *arg1;       /** p */
         std::filesystem::path arg1_fromstring;       /** p */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -8302,8 +8804,8 @@ static int _olua_fun_std_filesystem_status$2(lua_State *L)
         std::filesystem::path arg1_fromstring;       /** p */
         std::error_code *arg2 = nullptr;       /** ec */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -8402,8 +8904,8 @@ static int _olua_fun_std_filesystem_symlink_status$1(lua_State *L)
         std::filesystem::path *arg1;       /** p */
         std::filesystem::path arg1_fromstring;       /** p */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -8432,8 +8934,8 @@ static int _olua_fun_std_filesystem_symlink_status$2(lua_State *L)
         std::filesystem::path arg1_fromstring;       /** p */
         std::error_code *arg2 = nullptr;       /** ec */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -8548,8 +9050,8 @@ static int _olua_fun_std_filesystem_weakly_canonical$1(lua_State *L)
         std::filesystem::path *arg1;       /** p */
         std::filesystem::path arg1_fromstring;       /** p */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
@@ -8578,8 +9080,8 @@ static int _olua_fun_std_filesystem_weakly_canonical$2(lua_State *L)
         std::filesystem::path arg1_fromstring;       /** p */
         std::error_code *arg2 = nullptr;       /** ec */
 
-        if (olua_is_string(L, 1)) {
-            arg1_fromstring = olua_tostring(L, 1);
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
             arg1 = &arg1_fromstring;
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
