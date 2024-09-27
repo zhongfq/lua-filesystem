@@ -11,14 +11,17 @@ static int _olua_module_fs(lua_State *L);
 
 static int _olua_fun_std_filesystem_file_time_type___gc(lua_State *L)
 {
-    olua_startinvoke(L);
-
-    auto self = (std::filesystem::file_time_type *)olua_toobj(L, 1, "fs.file_time_type");
-    olua_postgc(L, self);
-
-    olua_endinvoke(L);
-
-    return 0;
+    try {
+        olua_startinvoke(L);
+        auto self = (std::filesystem::file_time_type *)olua_toobj(L, 1, "fs.file_time_type");
+        olua_postgc(L, self);
+        olua_endinvoke(L);
+        return 0;
+    } catch (std::exception &e) {
+        lua_pushfstring(L, "std::filesystem::file_time_type::__gc(): %s", e.what());
+        luaL_error(L, olua_tostring(L, -1));
+        return 0;
+    }
 }
 
 static int _olua_cls_fs_file_time_type(lua_State *L)
@@ -32,7 +35,7 @@ static int _olua_cls_fs_file_time_type(lua_State *L)
 OLUA_BEGIN_DECLS
 OLUA_LIB int luaopen_fs_file_time_type(lua_State *L)
 {
-    olua_require(L, "fs",  _olua_module_fs);
+    olua_require(L, ".olua.module.fs",  _olua_module_fs);
     if (!olua_getclass(L, "fs.file_time_type")) {
         luaL_error(L, "class not found: std::filesystem::file_time_type");
     }
@@ -113,14 +116,17 @@ static int _olua_fun_std_error_code___eq(lua_State *L)
 
 static int _olua_fun_std_error_code___gc(lua_State *L)
 {
-    olua_startinvoke(L);
-
-    auto self = (std::error_code *)olua_toobj(L, 1, "fs.error_code");
-    olua_postgc(L, self);
-
-    olua_endinvoke(L);
-
-    return 0;
+    try {
+        olua_startinvoke(L);
+        auto self = (std::error_code *)olua_toobj(L, 1, "fs.error_code");
+        olua_postgc(L, self);
+        olua_endinvoke(L);
+        return 0;
+    } catch (std::exception &e) {
+        lua_pushfstring(L, "std::error_code::__gc(): %s", e.what());
+        luaL_error(L, olua_tostring(L, -1));
+        return 0;
+    }
 }
 
 static int _olua_fun_std_error_code___lt(lua_State *L)
@@ -375,7 +381,7 @@ static int _olua_cls_fs_error_code(lua_State *L)
 OLUA_BEGIN_DECLS
 OLUA_LIB int luaopen_fs_error_code(lua_State *L)
 {
-    olua_require(L, "fs",  _olua_module_fs);
+    olua_require(L, ".olua.module.fs",  _olua_module_fs);
     if (!olua_getclass(L, "fs.error_code")) {
         luaL_error(L, "class not found: std::error_code");
     }
@@ -410,14 +416,17 @@ static int _olua_fun_std_error_category___eq(lua_State *L)
 
 static int _olua_fun_std_error_category___gc(lua_State *L)
 {
-    olua_startinvoke(L);
-
-    auto self = (std::error_category *)olua_toobj(L, 1, "fs.error_category");
-    olua_postgc(L, self);
-
-    olua_endinvoke(L);
-
-    return 0;
+    try {
+        olua_startinvoke(L);
+        auto self = (std::error_category *)olua_toobj(L, 1, "fs.error_category");
+        olua_postgc(L, self);
+        olua_endinvoke(L);
+        return 0;
+    } catch (std::exception &e) {
+        lua_pushfstring(L, "std::error_category::__gc(): %s", e.what());
+        luaL_error(L, olua_tostring(L, -1));
+        return 0;
+    }
 }
 
 static int _olua_fun_std_error_category___lt(lua_State *L)
@@ -610,7 +619,7 @@ static int _olua_cls_fs_error_category(lua_State *L)
 OLUA_BEGIN_DECLS
 OLUA_LIB int luaopen_fs_error_category(lua_State *L)
 {
-    olua_require(L, "fs",  _olua_module_fs);
+    olua_require(L, ".olua.module.fs",  _olua_module_fs);
     if (!olua_getclass(L, "fs.error_category")) {
         luaL_error(L, "class not found: std::error_category");
     }
@@ -691,14 +700,17 @@ static int _olua_fun_std_error_condition___eq(lua_State *L)
 
 static int _olua_fun_std_error_condition___gc(lua_State *L)
 {
-    olua_startinvoke(L);
-
-    auto self = (std::error_condition *)olua_toobj(L, 1, "fs.error_condition");
-    olua_postgc(L, self);
-
-    olua_endinvoke(L);
-
-    return 0;
+    try {
+        olua_startinvoke(L);
+        auto self = (std::error_condition *)olua_toobj(L, 1, "fs.error_condition");
+        olua_postgc(L, self);
+        olua_endinvoke(L);
+        return 0;
+    } catch (std::exception &e) {
+        lua_pushfstring(L, "std::error_condition::__gc(): %s", e.what());
+        luaL_error(L, olua_tostring(L, -1));
+        return 0;
+    }
 }
 
 static int _olua_fun_std_error_condition___lt(lua_State *L)
@@ -929,7 +941,7 @@ static int _olua_cls_fs_error_condition(lua_State *L)
 OLUA_BEGIN_DECLS
 OLUA_LIB int luaopen_fs_error_condition(lua_State *L)
 {
-    olua_require(L, "fs",  _olua_module_fs);
+    olua_require(L, ".olua.module.fs",  _olua_module_fs);
     if (!olua_getclass(L, "fs.error_condition")) {
         luaL_error(L, "class not found: std::error_condition");
     }
@@ -952,7 +964,7 @@ static int _olua_cls_fs_path_format(lua_State *L)
 OLUA_BEGIN_DECLS
 OLUA_LIB int luaopen_fs_path_format(lua_State *L)
 {
-    olua_require(L, "fs",  _olua_module_fs);
+    olua_require(L, ".olua.module.fs",  _olua_module_fs);
     if (!olua_getclass(L, "fs.path.format")) {
         luaL_error(L, "class not found: std::filesystem::path::format");
     }
@@ -982,7 +994,7 @@ static int _olua_cls_fs_copy_options(lua_State *L)
 OLUA_BEGIN_DECLS
 OLUA_LIB int luaopen_fs_copy_options(lua_State *L)
 {
-    olua_require(L, "fs",  _olua_module_fs);
+    olua_require(L, ".olua.module.fs",  _olua_module_fs);
     if (!olua_getclass(L, "fs.copy_options")) {
         luaL_error(L, "class not found: std::filesystem::copy_options");
     }
@@ -992,14 +1004,17 @@ OLUA_END_DECLS
 
 static int _olua_fun_std_filesystem_file_status___gc(lua_State *L)
 {
-    olua_startinvoke(L);
-
-    auto self = (std::filesystem::file_status *)olua_toobj(L, 1, "fs.file_status");
-    olua_postgc(L, self);
-
-    olua_endinvoke(L);
-
-    return 0;
+    try {
+        olua_startinvoke(L);
+        auto self = (std::filesystem::file_status *)olua_toobj(L, 1, "fs.file_status");
+        olua_postgc(L, self);
+        olua_endinvoke(L);
+        return 0;
+    } catch (std::exception &e) {
+        lua_pushfstring(L, "std::filesystem::file_status::__gc(): %s", e.what());
+        luaL_error(L, olua_tostring(L, -1));
+        return 0;
+    }
 }
 
 static int _olua_fun_std_filesystem_file_status_new$1(lua_State *L)
@@ -1250,7 +1265,7 @@ static int _olua_cls_fs_file_status(lua_State *L)
 OLUA_BEGIN_DECLS
 OLUA_LIB int luaopen_fs_file_status(lua_State *L)
 {
-    olua_require(L, "fs",  _olua_module_fs);
+    olua_require(L, ".olua.module.fs",  _olua_module_fs);
     if (!olua_getclass(L, "fs.file_status")) {
         luaL_error(L, "class not found: std::filesystem::file_status");
     }
@@ -1280,7 +1295,7 @@ static int _olua_cls_fs_file_type(lua_State *L)
 OLUA_BEGIN_DECLS
 OLUA_LIB int luaopen_fs_file_type(lua_State *L)
 {
-    olua_require(L, "fs",  _olua_module_fs);
+    olua_require(L, ".olua.module.fs",  _olua_module_fs);
     if (!olua_getclass(L, "fs.file_type")) {
         luaL_error(L, "class not found: std::filesystem::file_type");
     }
@@ -1304,7 +1319,7 @@ static int _olua_cls_fs_perm_options(lua_State *L)
 OLUA_BEGIN_DECLS
 OLUA_LIB int luaopen_fs_perm_options(lua_State *L)
 {
-    olua_require(L, "fs",  _olua_module_fs);
+    olua_require(L, ".olua.module.fs",  _olua_module_fs);
     if (!olua_getclass(L, "fs.perm_options")) {
         luaL_error(L, "class not found: std::filesystem::perm_options");
     }
@@ -1343,7 +1358,7 @@ static int _olua_cls_fs_perms(lua_State *L)
 OLUA_BEGIN_DECLS
 OLUA_LIB int luaopen_fs_perms(lua_State *L)
 {
-    olua_require(L, "fs",  _olua_module_fs);
+    olua_require(L, ".olua.module.fs",  _olua_module_fs);
     if (!olua_getclass(L, "fs.perms")) {
         luaL_error(L, "class not found: std::filesystem::perms");
     }
@@ -1366,7 +1381,7 @@ static int _olua_cls_fs_directory_options(lua_State *L)
 OLUA_BEGIN_DECLS
 OLUA_LIB int luaopen_fs_directory_options(lua_State *L)
 {
-    olua_require(L, "fs",  _olua_module_fs);
+    olua_require(L, ".olua.module.fs",  _olua_module_fs);
     if (!olua_getclass(L, "fs.directory_options")) {
         luaL_error(L, "class not found: std::filesystem::directory_options");
     }
@@ -1376,14 +1391,17 @@ OLUA_END_DECLS
 
 static int _olua_fun_std_filesystem_space_info___gc(lua_State *L)
 {
-    olua_startinvoke(L);
-
-    auto self = (std::filesystem::space_info *)olua_toobj(L, 1, "fs.space_info");
-    olua_postgc(L, self);
-
-    olua_endinvoke(L);
-
-    return 0;
+    try {
+        olua_startinvoke(L);
+        auto self = (std::filesystem::space_info *)olua_toobj(L, 1, "fs.space_info");
+        olua_postgc(L, self);
+        olua_endinvoke(L);
+        return 0;
+    } catch (std::exception &e) {
+        lua_pushfstring(L, "std::filesystem::space_info::__gc(): %s", e.what());
+        luaL_error(L, olua_tostring(L, -1));
+        return 0;
+    }
 }
 
 static int _olua_fun_std_filesystem_space_info_available$1(lua_State *L)
@@ -1604,7 +1622,7 @@ static int _olua_cls_fs_space_info(lua_State *L)
 OLUA_BEGIN_DECLS
 OLUA_LIB int luaopen_fs_space_info(lua_State *L)
 {
-    olua_require(L, "fs",  _olua_module_fs);
+    olua_require(L, ".olua.module.fs",  _olua_module_fs);
     if (!olua_getclass(L, "fs.space_info")) {
         luaL_error(L, "class not found: std::filesystem::space_info");
     }
@@ -1612,33 +1630,39 @@ OLUA_LIB int luaopen_fs_space_info(lua_State *L)
 }
 OLUA_END_DECLS
 
+template <> inline
+std::filesystem::directory_iterator olua_iterator_begin<std::filesystem::directory_iterator, std::filesystem::directory_iterator>(std::filesystem::directory_iterator *obj) {
+    return std::filesystem::begin(*obj);
+}
+
+template <> inline
+std::filesystem::directory_iterator olua_iterator_end<std::filesystem::directory_iterator, std::filesystem::directory_iterator>(std::filesystem::directory_iterator *obj) {
+    return std::filesystem::end(*obj);
+}
+
 static int _olua_fun_std_filesystem_directory_iterator___gc(lua_State *L)
 {
-    olua_startinvoke(L);
-
-    auto self = (std::filesystem::directory_iterator *)olua_toobj(L, 1, "fs.directory_iterator");
-    olua_postgc(L, self);
-
-    olua_endinvoke(L);
-
-    return 0;
+    try {
+        olua_startinvoke(L);
+        auto self = (std::filesystem::directory_iterator *)olua_toobj(L, 1, "fs.directory_iterator");
+        olua_postgc(L, self);
+        olua_endinvoke(L);
+        return 0;
+    } catch (std::exception &e) {
+        lua_pushfstring(L, "std::filesystem::directory_iterator::__gc(): %s", e.what());
+        luaL_error(L, olua_tostring(L, -1));
+        return 0;
+    }
 }
 
 static int _olua_fun_std_filesystem_directory_iterator___pairs(lua_State *L)
 {
     try {
         olua_startinvoke(L);
-
-        std::filesystem::directory_iterator *arg1 = nullptr;       /** self */
-
-        olua_check_object(L, 1, &arg1, "fs.directory_iterator");
-
-        // @extend(fs::directory_iterator_extend) static olua_Return __pairs(lua_State *L, std::filesystem::directory_iterator *self)
-        olua_Return ret = fs::directory_iterator_extend::__pairs(L, arg1);
-
+        auto self = olua_toobj<std::filesystem::directory_iterator>(L, 1);
+        int ret = olua_pairs<std::filesystem::directory_iterator, std::filesystem::directory_iterator>(L, self, true);
         olua_endinvoke(L);
-
-        return (int)ret;
+        return ret;
     } catch (std::exception &e) {
         lua_pushfstring(L, "std::filesystem::directory_iterator::__pairs(): %s", e.what());
         luaL_error(L, olua_tostring(L, -1));
@@ -1847,7 +1871,7 @@ static int _olua_cls_fs_directory_iterator(lua_State *L)
 OLUA_BEGIN_DECLS
 OLUA_LIB int luaopen_fs_directory_iterator(lua_State *L)
 {
-    olua_require(L, "fs",  _olua_module_fs);
+    olua_require(L, ".olua.module.fs",  _olua_module_fs);
     if (!olua_getclass(L, "fs.directory_iterator")) {
         luaL_error(L, "class not found: std::filesystem::directory_iterator");
     }
@@ -1855,33 +1879,39 @@ OLUA_LIB int luaopen_fs_directory_iterator(lua_State *L)
 }
 OLUA_END_DECLS
 
+template <> inline
+std::filesystem::recursive_directory_iterator olua_iterator_begin<std::filesystem::recursive_directory_iterator, std::filesystem::recursive_directory_iterator>(std::filesystem::recursive_directory_iterator *obj) {
+    return std::filesystem::begin(*obj);
+}
+
+template <> inline
+std::filesystem::recursive_directory_iterator olua_iterator_end<std::filesystem::recursive_directory_iterator, std::filesystem::recursive_directory_iterator>(std::filesystem::recursive_directory_iterator *obj) {
+    return std::filesystem::end(*obj);
+}
+
 static int _olua_fun_std_filesystem_recursive_directory_iterator___gc(lua_State *L)
 {
-    olua_startinvoke(L);
-
-    auto self = (std::filesystem::recursive_directory_iterator *)olua_toobj(L, 1, "fs.recursive_directory_iterator");
-    olua_postgc(L, self);
-
-    olua_endinvoke(L);
-
-    return 0;
+    try {
+        olua_startinvoke(L);
+        auto self = (std::filesystem::recursive_directory_iterator *)olua_toobj(L, 1, "fs.recursive_directory_iterator");
+        olua_postgc(L, self);
+        olua_endinvoke(L);
+        return 0;
+    } catch (std::exception &e) {
+        lua_pushfstring(L, "std::filesystem::recursive_directory_iterator::__gc(): %s", e.what());
+        luaL_error(L, olua_tostring(L, -1));
+        return 0;
+    }
 }
 
 static int _olua_fun_std_filesystem_recursive_directory_iterator___pairs(lua_State *L)
 {
     try {
         olua_startinvoke(L);
-
-        std::filesystem::recursive_directory_iterator *arg1 = nullptr;       /** self */
-
-        olua_check_object(L, 1, &arg1, "fs.recursive_directory_iterator");
-
-        // @extend(fs::recursive_directory_iterator_extend) static olua_Return __pairs(lua_State *L, std::filesystem::recursive_directory_iterator *self)
-        olua_Return ret = fs::recursive_directory_iterator_extend::__pairs(L, arg1);
-
+        auto self = olua_toobj<std::filesystem::recursive_directory_iterator>(L, 1);
+        int ret = olua_pairs<std::filesystem::recursive_directory_iterator, std::filesystem::recursive_directory_iterator>(L, self, true);
         olua_endinvoke(L);
-
-        return (int)ret;
+        return ret;
     } catch (std::exception &e) {
         lua_pushfstring(L, "std::filesystem::recursive_directory_iterator::__pairs(): %s", e.what());
         luaL_error(L, olua_tostring(L, -1));
@@ -2090,7 +2120,7 @@ static int _olua_cls_fs_recursive_directory_iterator(lua_State *L)
 OLUA_BEGIN_DECLS
 OLUA_LIB int luaopen_fs_recursive_directory_iterator(lua_State *L)
 {
-    olua_require(L, "fs",  _olua_module_fs);
+    olua_require(L, ".olua.module.fs",  _olua_module_fs);
     if (!olua_getclass(L, "fs.recursive_directory_iterator")) {
         luaL_error(L, "class not found: std::filesystem::recursive_directory_iterator");
     }
@@ -2125,14 +2155,17 @@ static int _olua_fun_std_filesystem_directory_entry___eq(lua_State *L)
 
 static int _olua_fun_std_filesystem_directory_entry___gc(lua_State *L)
 {
-    olua_startinvoke(L);
-
-    auto self = (std::filesystem::directory_entry *)olua_toobj(L, 1, "fs.directory_entry");
-    olua_postgc(L, self);
-
-    olua_endinvoke(L);
-
-    return 0;
+    try {
+        olua_startinvoke(L);
+        auto self = (std::filesystem::directory_entry *)olua_toobj(L, 1, "fs.directory_entry");
+        olua_postgc(L, self);
+        olua_endinvoke(L);
+        return 0;
+    } catch (std::exception &e) {
+        lua_pushfstring(L, "std::filesystem::directory_entry::__gc(): %s", e.what());
+        luaL_error(L, olua_tostring(L, -1));
+        return 0;
+    }
 }
 
 static int _olua_fun_std_filesystem_directory_entry___le(lua_State *L)
@@ -3554,7 +3587,7 @@ static int _olua_cls_fs_directory_entry(lua_State *L)
 OLUA_BEGIN_DECLS
 OLUA_LIB int luaopen_fs_directory_entry(lua_State *L)
 {
-    olua_require(L, "fs",  _olua_module_fs);
+    olua_require(L, ".olua.module.fs",  _olua_module_fs);
     if (!olua_getclass(L, "fs.directory_entry")) {
         luaL_error(L, "class not found: std::filesystem::directory_entry");
     }
@@ -3638,14 +3671,17 @@ static int _olua_fun_std_filesystem_path___eq(lua_State *L)
 
 static int _olua_fun_std_filesystem_path___gc(lua_State *L)
 {
-    olua_startinvoke(L);
-
-    auto self = (std::filesystem::path *)olua_toobj(L, 1, "fs.path");
-    olua_postgc(L, self);
-
-    olua_endinvoke(L);
-
-    return 0;
+    try {
+        olua_startinvoke(L);
+        auto self = (std::filesystem::path *)olua_toobj(L, 1, "fs.path");
+        olua_postgc(L, self);
+        olua_endinvoke(L);
+        return 0;
+    } catch (std::exception &e) {
+        lua_pushfstring(L, "std::filesystem::path::__gc(): %s", e.what());
+        luaL_error(L, olua_tostring(L, -1));
+        return 0;
+    }
 }
 
 static int _olua_fun_std_filesystem_path___le(lua_State *L)
@@ -3717,6 +3753,21 @@ static int _olua_fun_std_filesystem_path___lt(lua_State *L)
         return num_ret;
     } catch (std::exception &e) {
         lua_pushfstring(L, "std::filesystem::path::__lt(): %s", e.what());
+        luaL_error(L, olua_tostring(L, -1));
+        return 0;
+    }
+}
+
+static int _olua_fun_std_filesystem_path___pairs(lua_State *L)
+{
+    try {
+        olua_startinvoke(L);
+        auto self = olua_toobj<std::filesystem::path>(L, 1);
+        int ret = olua_pairs<std::filesystem::path, std::filesystem::path::iterator>(L, self, false);
+        olua_endinvoke(L);
+        return ret;
+    } catch (std::exception &e) {
+        lua_pushfstring(L, "std::filesystem::path::__pairs(): %s", e.what());
         luaL_error(L, olua_tostring(L, -1));
         return 0;
     }
@@ -4841,6 +4892,7 @@ static int _olua_cls_fs_path(lua_State *L)
     oluacls_func(L, "__gc", _olua_fun_std_filesystem_path___gc);
     oluacls_func(L, "__le", _olua_fun_std_filesystem_path___le);
     oluacls_func(L, "__lt", _olua_fun_std_filesystem_path___lt);
+    oluacls_func(L, "__pairs", _olua_fun_std_filesystem_path___pairs);
     oluacls_func(L, "assign", _olua_fun_std_filesystem_path_assign);
     oluacls_func(L, "c_str", _olua_fun_std_filesystem_path_c_str);
     oluacls_func(L, "clear", _olua_fun_std_filesystem_path_clear);
@@ -4887,9 +4939,43 @@ static int _olua_cls_fs_path(lua_State *L)
 OLUA_BEGIN_DECLS
 OLUA_LIB int luaopen_fs_path(lua_State *L)
 {
-    olua_require(L, "fs",  _olua_module_fs);
+    olua_require(L, ".olua.module.fs",  _olua_module_fs);
     if (!olua_getclass(L, "fs.path")) {
         luaL_error(L, "class not found: std::filesystem::path");
+    }
+    return 1;
+}
+OLUA_END_DECLS
+
+static int _olua_fun_std_filesystem_path_iterator___gc(lua_State *L)
+{
+    try {
+        olua_startinvoke(L);
+        auto self = (std::filesystem::path::iterator *)olua_toobj(L, 1, "fs.path.iterator");
+        olua_postgc(L, self);
+        olua_endinvoke(L);
+        return 0;
+    } catch (std::exception &e) {
+        lua_pushfstring(L, "std::filesystem::path::iterator::__gc(): %s", e.what());
+        luaL_error(L, olua_tostring(L, -1));
+        return 0;
+    }
+}
+
+static int _olua_cls_fs_path_iterator(lua_State *L)
+{
+    oluacls_class<std::filesystem::path::iterator>(L, "fs.path.iterator");
+    oluacls_func(L, "__gc", _olua_fun_std_filesystem_path_iterator___gc);
+
+    return 1;
+}
+
+OLUA_BEGIN_DECLS
+OLUA_LIB int luaopen_fs_path_iterator(lua_State *L)
+{
+    olua_require(L, ".olua.module.fs",  _olua_module_fs);
+    if (!olua_getclass(L, "fs.path.iterator")) {
+        luaL_error(L, "class not found: std::filesystem::path::iterator");
     }
     return 1;
 }
@@ -9176,7 +9262,7 @@ static int _olua_cls_fs_filesystem(lua_State *L)
 OLUA_BEGIN_DECLS
 OLUA_LIB int luaopen_fs_filesystem(lua_State *L)
 {
-    olua_require(L, "fs",  _olua_module_fs);
+    olua_require(L, ".olua.module.fs",  _olua_module_fs);
     if (!olua_getclass(L, "fs.filesystem")) {
         luaL_error(L, "class not found: std::filesystem");
     }
@@ -9202,6 +9288,7 @@ int _olua_module_fs(lua_State *L)
     olua_require(L, "fs.recursive_directory_iterator", _olua_cls_fs_recursive_directory_iterator);
     olua_require(L, "fs.directory_entry", _olua_cls_fs_directory_entry);
     olua_require(L, "fs.path", _olua_cls_fs_path);
+    olua_require(L, "fs.path.iterator", _olua_cls_fs_path_iterator);
     olua_require(L, "fs.filesystem", _olua_cls_fs_filesystem);
 
     return 0;
@@ -9210,7 +9297,7 @@ int _olua_module_fs(lua_State *L)
 OLUA_BEGIN_DECLS
 OLUA_LIB int luaopen_fs(lua_State *L)
 {
-    olua_require(L, "fs",  _olua_module_fs);
+    olua_require(L, ".olua.module.fs",  _olua_module_fs);
 
     if (olua_getclass(L, "fs.filesystem")) {
         return 1;

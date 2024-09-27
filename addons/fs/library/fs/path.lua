@@ -30,6 +30,9 @@ function path.__le(lhs, rhs) end
 ---@return boolean
 function path.__lt(lhs, rhs) end
 
+---@return any
+function path:__pairs() end
+
 ---@param s string
 ---@return fs.path
 function path:assign(s) end

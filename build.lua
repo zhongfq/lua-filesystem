@@ -39,7 +39,6 @@ luacls(function (cxxcls)
         :gsub("::", ".")
 end)
 
-exclude_type "std::filesystem::path::iterator"
 exclude_type "std::filesystem::path::__string_view"
 exclude_type "std::u16string"
 exclude_type "std::u32string"
@@ -68,15 +67,18 @@ typeconf "std::filesystem::directory_options"
 
 typeconf "std::filesystem::space_info"
 typeconf "std::filesystem::directory_iterator"
-    .extend "fs::directory_iterator_extend"
     .include "new"
+    .iterator "std::filesystem::directory_iterator"
+        .once "true"
 typeconf "std::filesystem::recursive_directory_iterator"
-    .extend "fs::recursive_directory_iterator_extend"
     .include "new"
+    .iterator "std::filesystem::recursive_directory_iterator"
+        .once "true"
 typeconf "std::filesystem::directory_entry"
 typeconf "std::filesystem::path"
     .extend "fs::path_extend"
     .fromstring "true"
+    .iterator "std::filesystem::path::iterator"
 typeconf "std::filesystem"
     .exclude "begin"
     .exclude "end"

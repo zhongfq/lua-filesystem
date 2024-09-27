@@ -1,7 +1,7 @@
 package.cpath = "build/?.so;build/Debug/?.dll;" .. package.cpath
 
-local fs = require "fs"
 local copy_options = require "fs.copy_options"
+local fs = require "fs"
 local path = require "fs.path"
 local directory_iterator = require "fs.directory_iterator"
 local directory_options = require "fs.directory_options"
@@ -27,6 +27,13 @@ for _, file in pairs(t) do
     ---@cast file fs.directory_entry
     print("@1", file,  file:path():string(), file:path():posix_path():string())
 end
+print("### do end")
 
 local newpath = path.new("a/b/c") / "hello.png"
 print("hello path:", newpath, newpath:string())
+for _, v in pairs(newpath) do
+    print("@2", v, v:string())
+end
+for _, v in pairs(newpath) do
+    print("@3", v, v:string())
+end

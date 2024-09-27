@@ -8,9 +8,8 @@ local recursive_directory_iterator = {}
 ---@return any
 function recursive_directory_iterator:__gc() end
 
----@param self fs.recursive_directory_iterator
 ---@return any
-function recursive_directory_iterator.__pairs(self) end
+function recursive_directory_iterator:__pairs() end
 
 ---@return fs.recursive_directory_iterator
 ---@overload fun(p: fs.path|string, xoptions: fs.directory_options): fs.recursive_directory_iterator

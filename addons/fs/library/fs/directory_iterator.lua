@@ -8,9 +8,8 @@ local directory_iterator = {}
 ---@return any
 function directory_iterator:__gc() end
 
----@param self fs.directory_iterator
 ---@return any
-function directory_iterator.__pairs(self) end
+function directory_iterator:__pairs() end
 
 ---@return fs.directory_iterator
 ---@overload fun(p: fs.path|string): fs.directory_iterator
