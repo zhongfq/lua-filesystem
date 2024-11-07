@@ -160,6 +160,10 @@ function filesystem.last_write_time(p) end
 ---@overload fun(dir: fs.path|string): any
 function filesystem.ls(dir, recursive) end
 
+---@param s string
+---@return fs.path
+function filesystem.path(s) end
+
 ---@param p fs.path|string
 ---@param prms fs.perms
 ---@param opts fs.perm_options

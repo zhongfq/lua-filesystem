@@ -113,6 +113,10 @@ public:
         }
         return 1;
     }
+
+    static std::filesystem::path path(const std::filesystem::path::string_type &s) {
+        return std::filesystem::path(s);
+    }
 };
 
 }

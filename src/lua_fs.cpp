@@ -7914,6 +7914,29 @@ static int _olua_fun_std_filesystem_ls(lua_State *L)
     return 0;
 }
 
+static int _olua_fun_std_filesystem_path(lua_State *L)
+{
+    try {
+        olua_startinvoke(L);
+
+        std::filesystem::path::string_type arg1;       /** s */
+
+        olua_check_string(L, 1, &arg1);
+
+        // @extend(fs::fs_extend) static std::filesystem::path path(const std::filesystem::path::string_type &s)
+        std::filesystem::path ret = fs::fs_extend::path(arg1);
+        int num_ret = olua_copy_object(L, ret, "fs.path");
+
+        olua_endinvoke(L);
+
+        return num_ret;
+    } catch (std::exception &e) {
+        lua_pushfstring(L, "std::filesystem::path(): %s", e.what());
+        luaL_error(L, olua_tostring(L, -1));
+        return 0;
+    }
+}
+
 static int _olua_fun_std_filesystem_permissions$1(lua_State *L)
 {
     try {
@@ -9322,6 +9345,7 @@ static int _olua_cls_fs_filesystem(lua_State *L)
     oluacls_func(L, "is_symlink", _olua_fun_std_filesystem_is_symlink);
     oluacls_func(L, "last_write_time", _olua_fun_std_filesystem_last_write_time);
     oluacls_func(L, "ls", _olua_fun_std_filesystem_ls);
+    oluacls_func(L, "path", _olua_fun_std_filesystem_path);
     oluacls_func(L, "permissions", _olua_fun_std_filesystem_permissions);
     oluacls_func(L, "proximate", _olua_fun_std_filesystem_proximate);
     oluacls_func(L, "read_symlink", _olua_fun_std_filesystem_read_symlink);
