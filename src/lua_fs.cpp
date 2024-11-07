@@ -7833,6 +7833,87 @@ static int _olua_fun_std_filesystem_last_write_time(lua_State *L)
     return 0;
 }
 
+static int _olua_fun_std_filesystem_ls$1(lua_State *L)
+{
+    try {
+        olua_startinvoke(L);
+
+        std::filesystem::path *arg1;       /** dir */
+        std::filesystem::path arg1_fromstring;       /** dir */
+        bool arg2 = false;       /** recursive */
+
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
+            arg1 = &arg1_fromstring;
+        } else {
+            olua_check_object(L, 1, &arg1, "fs.path");
+        }
+        olua_check_bool(L, 2, &arg2);
+
+        // @extend(fs::fs_extend) static olua_Return ls(lua_State *L, std::filesystem::path dir, @optional bool recursive)
+        olua_Return ret = fs::fs_extend::ls(L, *arg1, arg2);
+
+        olua_endinvoke(L);
+
+        return (int)ret;
+    } catch (std::exception &e) {
+        lua_pushfstring(L, "std::filesystem::ls(): %s", e.what());
+        luaL_error(L, olua_tostring(L, -1));
+        return 0;
+    }
+}
+
+static int _olua_fun_std_filesystem_ls$2(lua_State *L)
+{
+    try {
+        olua_startinvoke(L);
+
+        std::filesystem::path *arg1;       /** dir */
+        std::filesystem::path arg1_fromstring;       /** dir */
+
+        if (olua_isstring(L, 1)) {
+            olua_check_string(L, 1, &arg1_fromstring);
+            arg1 = &arg1_fromstring;
+        } else {
+            olua_check_object(L, 1, &arg1, "fs.path");
+        }
+
+        // @extend(fs::fs_extend) static olua_Return ls(lua_State *L, std::filesystem::path dir)
+        olua_Return ret = fs::fs_extend::ls(L, *arg1);
+
+        olua_endinvoke(L);
+
+        return (int)ret;
+    } catch (std::exception &e) {
+        lua_pushfstring(L, "std::filesystem::ls(): %s", e.what());
+        luaL_error(L, olua_tostring(L, -1));
+        return 0;
+    }
+}
+
+static int _olua_fun_std_filesystem_ls(lua_State *L)
+{
+    int num_args = lua_gettop(L);
+
+    if (num_args == 1) {
+        // if ((olua_is_object(L, 1, "fs.path") || olua_is_string(L, 1))) {
+            // @extend(fs::fs_extend) static olua_Return ls(lua_State *L, std::filesystem::path dir)
+            return _olua_fun_std_filesystem_ls$2(L);
+        // }
+    }
+
+    if (num_args == 2) {
+        // if ((olua_is_object(L, 1, "fs.path") || olua_is_string(L, 1)) && (olua_is_bool(L, 2))) {
+            // @extend(fs::fs_extend) static olua_Return ls(lua_State *L, std::filesystem::path dir, @optional bool recursive)
+            return _olua_fun_std_filesystem_ls$1(L);
+        // }
+    }
+
+    luaL_error(L, "method 'std::filesystem::ls' not support '%d' arguments", num_args);
+
+    return 0;
+}
+
 static int _olua_fun_std_filesystem_permissions$1(lua_State *L)
 {
     try {
@@ -9240,6 +9321,7 @@ static int _olua_cls_fs_filesystem(lua_State *L)
     oluacls_func(L, "is_socket", _olua_fun_std_filesystem_is_socket);
     oluacls_func(L, "is_symlink", _olua_fun_std_filesystem_is_symlink);
     oluacls_func(L, "last_write_time", _olua_fun_std_filesystem_last_write_time);
+    oluacls_func(L, "ls", _olua_fun_std_filesystem_ls);
     oluacls_func(L, "permissions", _olua_fun_std_filesystem_permissions);
     oluacls_func(L, "proximate", _olua_fun_std_filesystem_proximate);
     oluacls_func(L, "read_symlink", _olua_fun_std_filesystem_read_symlink);

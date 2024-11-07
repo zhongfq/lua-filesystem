@@ -154,6 +154,12 @@ function filesystem.is_symlink(s) end
 ---@overload fun(p: fs.path|string, t: fs.file_time_type, ec: fs.error_code)
 function filesystem.last_write_time(p) end
 
+---@param dir fs.path|string
+---@param recursive boolean
+---@return any
+---@overload fun(dir: fs.path|string): any
+function filesystem.ls(dir, recursive) end
+
 ---@param p fs.path|string
 ---@param prms fs.perms
 ---@param opts fs.perm_options

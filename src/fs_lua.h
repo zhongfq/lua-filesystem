@@ -99,6 +99,22 @@ public:
     }
 };
 
+class fs_extend {
+public:
+    static olua_Return ls(lua_State *L, std::filesystem::path dir, bool recursive = false) {
+        if (recursive) {
+            auto ret = new std::filesystem::recursive_directory_iterator(dir);
+            olua_postnew(L, ret);
+            olua_pushobj(L, ret);
+        } else {
+            auto ret = new std::filesystem::directory_iterator(dir);
+            olua_postnew(L, ret);
+            olua_pushobj(L, ret);
+        }
+        return 1;
+    }
+};
+
 }
 
 #endif
