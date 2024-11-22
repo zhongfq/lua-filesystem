@@ -37,3 +37,7 @@ end
 for _, v in pairs(newpath) do
     print("@3", v, v:string())
 end
+
+local time = fs.last_write_time("build.lua")
+print(time)
+print(os.date("%Y-%m-%d %H:%M:%S", time))

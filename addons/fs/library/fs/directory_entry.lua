@@ -68,8 +68,8 @@ function directory_entry:is_socket() end
 ---@overload fun(self: fs.directory_entry, ec: fs.error_code): boolean
 function directory_entry:is_symlink() end
 
----@return fs.file_time_type
----@overload fun(self: fs.directory_entry, ec: fs.error_code): fs.file_time_type
+---@return integer
+---@overload fun(self: fs.directory_entry, ec: fs.error_code): integer
 function directory_entry:last_write_time() end
 
 ---@return fs.directory_entry

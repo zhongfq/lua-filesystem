@@ -49,10 +49,8 @@ typedef "std::filesystem::path::string_type"
     .luatype "string"
     .conv "olua_$$_string"
 
-typedef "std::chrono::time_point::duration"
-    .conv "olua_$$_integer"
-
-typeonly "std::filesystem::file_time_type"
+typedef "std::filesystem::file_time_type"
+    .luatype "integer"
 
 typeconf "std::error_code"
 typeconf "std::error_category"

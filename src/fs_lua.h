@@ -4,6 +4,8 @@
 #include "olua.hpp"
 
 #include <filesystem>
+#include <chrono>
+#include <ctime>
 
 #ifdef _WIN32
 #include <stdexcept>
@@ -119,6 +121,20 @@ public:
     }
 };
 
+}
+
+static inline void olua_check_std_filesystem_file_time_type(lua_State *L, int idx, std::filesystem::file_time_type *value) {
+    auto t = (std::time_t)olua_checkinteger(L, idx);
+    auto diff = std::chrono::system_clock::from_time_t(t) - std::chrono::system_clock::now();
+    *value = std::filesystem::file_time_type::clock::now() + diff;
+}
+
+static inline int olua_push_std_filesystem_file_time_type(lua_State *L, const std::filesystem::file_time_type &value) {
+    auto diff = value - std::filesystem::file_time_type::clock::now();
+    auto system_time = std::chrono::time_point_cast<std::chrono::system_clock::duration>(diff + std::chrono::system_clock::now());
+    auto t = std::chrono::system_clock::to_time_t(system_time);
+    lua_pushnumber(L, t);
+    return 1;
 }
 
 #endif

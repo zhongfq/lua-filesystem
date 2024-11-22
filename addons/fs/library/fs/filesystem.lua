@@ -148,10 +148,10 @@ function filesystem.is_socket(s) end
 function filesystem.is_symlink(s) end
 
 ---@param p fs.path|string
----@return fs.file_time_type
----@overload fun(p: fs.path|string, ec: fs.error_code): fs.file_time_type
----@overload fun(p: fs.path|string, t: fs.file_time_type)
----@overload fun(p: fs.path|string, t: fs.file_time_type, ec: fs.error_code)
+---@return integer
+---@overload fun(p: fs.path|string, ec: fs.error_code): integer
+---@overload fun(p: fs.path|string, t: integer)
+---@overload fun(p: fs.path|string, t: integer, ec: fs.error_code)
 function filesystem.last_write_time(p) end
 
 ---@param dir fs.path|string

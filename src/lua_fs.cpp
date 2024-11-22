@@ -9,40 +9,6 @@
 
 static int _olua_module_fs(lua_State *L);
 
-static int _olua_fun_std_filesystem_file_time_type___gc(lua_State *L)
-{
-    try {
-        olua_startinvoke(L);
-        auto self = (std::filesystem::file_time_type *)olua_toobj(L, 1, "fs.file_time_type");
-        olua_postgc(L, self);
-        olua_endinvoke(L);
-        return 0;
-    } catch (std::exception &e) {
-        lua_pushfstring(L, "std::filesystem::file_time_type::__gc(): %s", e.what());
-        luaL_error(L, olua_tostring(L, -1));
-        return 0;
-    }
-}
-
-static int _olua_cls_fs_file_time_type(lua_State *L)
-{
-    oluacls_class<std::filesystem::file_time_type>(L, "fs.file_time_type");
-    oluacls_func(L, "__gc", _olua_fun_std_filesystem_file_time_type___gc);
-
-    return 1;
-}
-
-OLUA_BEGIN_DECLS
-OLUA_LIB int luaopen_fs_file_time_type(lua_State *L)
-{
-    olua_require(L, ".olua.module.fs",  _olua_module_fs);
-    if (!olua_getclass(L, "fs.file_time_type")) {
-        luaL_error(L, "class not found: std::filesystem::file_time_type");
-    }
-    return 1;
-}
-OLUA_END_DECLS
-
 static int _olua_fun_std_error_code___eq$1(lua_State *L)
 {
     try {
@@ -3073,7 +3039,7 @@ static int _olua_fun_std_filesystem_directory_entry_last_write_time$1(lua_State 
 
         // std::filesystem::file_time_type last_write_time()
         std::filesystem::file_time_type ret = self->last_write_time();
-        int num_ret = olua_copy_object(L, ret, "fs.file_time_type");
+        int num_ret = olua_push_std_filesystem_file_time_type(L, ret);
 
         olua_endinvoke(L);
 
@@ -3098,7 +3064,7 @@ static int _olua_fun_std_filesystem_directory_entry_last_write_time$2(lua_State 
 
         // std::filesystem::file_time_type last_write_time(std::error_code &ec)
         std::filesystem::file_time_type ret = self->last_write_time(*arg1);
-        int num_ret = olua_copy_object(L, ret, "fs.file_time_type");
+        int num_ret = olua_push_std_filesystem_file_time_type(L, ret);
 
         olua_endinvoke(L);
 
@@ -7693,7 +7659,7 @@ static int _olua_fun_std_filesystem_last_write_time$1(lua_State *L)
 
         // static std::filesystem::file_time_type last_write_time(const std::filesystem::path &p)
         std::filesystem::file_time_type ret = std::filesystem::last_write_time(*arg1);
-        int num_ret = olua_copy_object(L, ret, "fs.file_time_type");
+        int num_ret = olua_push_std_filesystem_file_time_type(L, ret);
 
         olua_endinvoke(L);
 
@@ -7724,7 +7690,7 @@ static int _olua_fun_std_filesystem_last_write_time$2(lua_State *L)
 
         // static std::filesystem::file_time_type last_write_time(const std::filesystem::path &p, std::error_code &ec)
         std::filesystem::file_time_type ret = std::filesystem::last_write_time(*arg1, *arg2);
-        int num_ret = olua_copy_object(L, ret, "fs.file_time_type");
+        int num_ret = olua_push_std_filesystem_file_time_type(L, ret);
 
         olua_endinvoke(L);
 
@@ -7743,7 +7709,7 @@ static int _olua_fun_std_filesystem_last_write_time$3(lua_State *L)
 
         std::filesystem::path *arg1;       /** p */
         std::filesystem::path arg1_from_string;       /** p */
-        std::filesystem::file_time_type *arg2;       /** t */
+        std::filesystem::file_time_type arg2;       /** t */
 
         if (olua_isstring(L, 1)) {
             olua_check_string(L, 1, &arg1_from_string);
@@ -7751,10 +7717,10 @@ static int _olua_fun_std_filesystem_last_write_time$3(lua_State *L)
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
         }
-        olua_check_object(L, 2, &arg2, "fs.file_time_type");
+        olua_check_std_filesystem_file_time_type(L, 2, &arg2);
 
         // static void last_write_time(const std::filesystem::path &p, std::filesystem::file_time_type t)
-        std::filesystem::last_write_time(*arg1, *arg2);
+        std::filesystem::last_write_time(*arg1, arg2);
 
         olua_endinvoke(L);
 
@@ -7773,7 +7739,7 @@ static int _olua_fun_std_filesystem_last_write_time$4(lua_State *L)
 
         std::filesystem::path *arg1;       /** p */
         std::filesystem::path arg1_from_string;       /** p */
-        std::filesystem::file_time_type *arg2;       /** t */
+        std::filesystem::file_time_type arg2;       /** t */
         std::error_code *arg3 = nullptr;       /** ec */
 
         if (olua_isstring(L, 1)) {
@@ -7782,11 +7748,11 @@ static int _olua_fun_std_filesystem_last_write_time$4(lua_State *L)
         } else {
             olua_check_object(L, 1, &arg1, "fs.path");
         }
-        olua_check_object(L, 2, &arg2, "fs.file_time_type");
+        olua_check_std_filesystem_file_time_type(L, 2, &arg2);
         olua_check_object(L, 3, &arg3, "fs.error_code");
 
         // static void last_write_time(const std::filesystem::path &p, std::filesystem::file_time_type t, std::error_code &ec)
-        std::filesystem::last_write_time(*arg1, *arg2, *arg3);
+        std::filesystem::last_write_time(*arg1, arg2, *arg3);
 
         olua_endinvoke(L);
 
@@ -7815,14 +7781,14 @@ static int _olua_fun_std_filesystem_last_write_time(lua_State *L)
             return _olua_fun_std_filesystem_last_write_time$2(L);
         }
 
-        // if ((olua_is_object(L, 1, "fs.path") || olua_is_string(L, 1)) && (olua_is_object(L, 2, "fs.file_time_type"))) {
+        // if ((olua_is_object(L, 1, "fs.path") || olua_is_string(L, 1)) && (olua_is_std_filesystem_file_time_type(L, 2))) {
             // static void last_write_time(const std::filesystem::path &p, std::filesystem::file_time_type t)
             return _olua_fun_std_filesystem_last_write_time$3(L);
         // }
     }
 
     if (num_args == 3) {
-        // if ((olua_is_object(L, 1, "fs.path") || olua_is_string(L, 1)) && (olua_is_object(L, 2, "fs.file_time_type")) && (olua_is_object(L, 3, "fs.error_code"))) {
+        // if ((olua_is_object(L, 1, "fs.path") || olua_is_string(L, 1)) && (olua_is_std_filesystem_file_time_type(L, 2)) && (olua_is_object(L, 3, "fs.error_code"))) {
             // static void last_write_time(const std::filesystem::path &p, std::filesystem::file_time_type t, std::error_code &ec)
             return _olua_fun_std_filesystem_last_write_time$4(L);
         // }
@@ -9378,7 +9344,6 @@ OLUA_END_DECLS
 
 int _olua_module_fs(lua_State *L)
 {
-    olua_require(L, "fs.file_time_type", _olua_cls_fs_file_time_type);
     olua_require(L, "fs.error_code", _olua_cls_fs_error_code);
     olua_require(L, "fs.error_category", _olua_cls_fs_error_category);
     olua_require(L, "fs.error_condition", _olua_cls_fs_error_condition);
